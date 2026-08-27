@@ -1,0 +1,345 @@
+#!/usr/bin/env python3
+"""ATLAS AI - command line entry point.
+
+Commands
+--------
+  run     attach to a target and run the data-entry loop once
+  serve   start the localhost JSON command server
+  doctor  print an environment / dependency report
+  version print the version and exit
+
+Examples
+--------
+  python main.py run --web --url http://localhost:5173 --max-records 3
+  python main.py run --title "Customer Entry"
+  python main.py serve --port 19768
+  python main.py doctor
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import sys
+
+from atlas import APP_NAME, __version__
+from atlas.config import load_config
+from atlas.core.logging import logger, setup_logging
+
+
+def _config(args: argparse.Namespace) -> object:
+    return load_config()
+
+
+def _build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(prog="atlas", description=f"{APP_NAME} v{__version__}")
+    parser.add_argument("--log-level", default="", help="override LOG_LEVEL (DEBUG/INFO/WARNING/ERROR)")
+    sub = parser.add_subparsers(dest="command", required=True)
+
+    run = sub.add_parser("run", help="attach and run the loop")
+    target = run.add_mutually_exclusive_group(required=False)
+    target.add_argument("--web", action="store_true", help="attach to a web page (Playwright)")
+    target.add_argument("--title", metavar="TITLE", help="attach to a desktop window by title")
+    target.add_argument("--attach", action="store_true", help="click-to-attach: wait for the user to click the target window (reliable for Electron/Chrome apps)")
+    run.add_argument("--mode", choices=["auto", "web", "desktop", "click"], default=None,
+                     help="attach strategy: auto = universal attach-first (never relaunches an "
+                          "existing browser/target); web = open a URL; desktop = attach by title; "
+                          "click = user clicks the target window")
+    run.add_argument("--auto", action="store_true",
+                     help="alias for --mode auto (universal attach-first)")
+    run.add_argument("--app-name", default="", help="auto mode: expected application name hint")
+    run.add_argument("--url", default="http://localhost:5173", help="web URL (default http://localhost:5173)")
+    run.add_argument("--browser", choices=["chromium", "firefox", "webkit"], default="chromium")
+    run.add_argument("--headless", action="store_true", help="run the browser headless")
+    run.add_argument("--max-records", type=int, default=0, help="stop after N records (0 = unlimited)")
+    run.add_argument("--single-form", action="store_true",
+                     help="SINGLE-FORM TEST MODE: process exactly ONE complete form (fill + verify, "
+                          "never click Upload Details unless WORKFLOW_SINGLE_FORM_UPLOAD=1), then "
+                          "terminate ATLAS cleanly")
+    run.add_argument("--no-overlay", action="store_true", help="disable the floating overlay")
+    run.add_argument("--json", action="store_true", help="print the summary as JSON")
+    run.add_argument("--anchor", action="store_true", help="desktop: wait for your click on the first form field, build a UIA field map, then run")
+    run.add_argument("--out", default="debug/mpf", help="debug/session output directory (default debug/mpf)")
+
+    serve = sub.add_parser("serve", help="start the JSON command server")
+    serve.add_argument("--port", type=int, default=0, help="port (default: CONTROLLER_COMMAND_PORT)")
+
+    sub.add_parser("doctor", help="environment report")
+    sub.add_parser("version", help="print version")
+
+    diag = sub.add_parser("diagnose", help="dump a diagnostic snapshot of a target window")
+
+    obs = sub.add_parser(
+        "observe",
+        help="attach and observe ONLY - no typing/clicking/scrolling/upload. Alias for diagnose.",
+    )
+    obs.add_argument("--title", default="MPF", help="window title to attach to")
+    obs.add_argument("--out", default="debug/mpf", help="output directory")
+
+    vdoc = sub.add_parser(
+        "vision-doctor",
+        help="report configured Vision providers, then run ONE live provider call against the "
+             "attached window's screenshot (no typing/clicking/scrolling/upload)",
+    )
+    vdoc.add_argument("--title", default="MPF", help="window title to attach to")
+    diag.add_argument("--title", default="MPF", help="window title to attach to (substring match)")
+    diag.add_argument("--out", default="debug/mpf", help="output directory")
+
+    return parser
+
+
+def _setup(args: argparse.Namespace) -> object:
+    config = _config(args)
+    level = (args.log_level or config.log.level) if getattr(config, "log", None) else args.log_level
+    setup_logging(level.upper(), config.log.folder)
+    return config
+
+
+def cmd_run(args: argparse.Namespace) -> int:
+    from atlas.assistant import Assistant
+    from atlas.dashboard import Dashboard
+    from atlas.target.web import WebTarget
+
+    config = _setup(args)
+    dashboard = Dashboard(enabled=not args.no_overlay)
+    mode = args.mode or (
+        "auto" if args.auto else
+        "web" if args.web else
+        "desktop" if args.title else
+        "click"
+    )
+    with Assistant(config) as assistant:
+        if mode == "auto":
+            # Universal attach-first: DISCOVER -> CLASSIFY -> ATTACH. Uses the
+            # existing window/browser/tab; only launches a fresh browser when no
+            # target exists anywhere AND AUTO_LAUNCH_TARGET=true.
+            print("AUTO ATTACH MODE: scanning for an existing target ...")
+            target = assistant.attach_auto(
+                title=args.title or None,
+                url=args.url,
+                app_name=args.app_name or None,
+            )
+        elif mode == "web":
+            assistant.attach_web(url=args.url, browser=args.browser, headless=args.headless)
+        elif mode == "desktop":
+            assistant.attach_desktop(title=args.title)
+        else:
+            # Click-to-attach mode (Step 8): user clicks the target window,
+            # then clicks the first editable field, then autonomous entry.
+            print("ATTACH MODE: click the MPF application window to attach ...")
+            assistant.attach_desktop_by_click()
+        dashboard.start()
+        print(f"attached: {assistant.target.info.to_dict()}")
+        single_form = args.single_form or config.workflow.single_form_mode
+        if single_form:
+            print("MODE: SINGLE FORM — exactly one form, then ATLAS terminates automatically")
+        records = 1 if single_form else args.max_records
+        if mode in {"auto", "web"} and isinstance(assistant.target, WebTarget):
+            summary = assistant.run(max_records=records, out_dir=args.out, single_form=single_form)
+        else:
+            # Desktop targets use the interactive anchored flow by default
+            # (Step 7): attach -> WAITING_FOR_START_FIELD -> user clicks the
+            # first editable field -> build field map -> autonomous entry.
+            print("waiting for you to click the first editable field in the form's RIGHT panel ...")
+            summary = assistant.run_anchored(max_records=records, out_dir=args.out, single_form=single_form)
+        dashboard.stop()
+        result = summary.to_dict()
+        if args.json:
+            print(json.dumps(result, ensure_ascii=False, indent=2, default=str))
+        else:
+            print(f"records: {len(result['records'])}  completed: {result['completed']}  "
+                  f"failed: {result['failed']}  duration: {result['total_duration']:.1f}s")
+            if result.get("stopped_reason"):
+                print(f"stopped: {result['stopped_reason']}")
+    return 0 if result["failed"] == 0 else 1
+
+
+def cmd_serve(args: argparse.Namespace) -> int:
+    from atlas.assistant import Assistant, CommandServer, Controller
+
+    config = _setup(args)
+    with Assistant(config) as assistant:
+        controller = Controller(assistant)
+        port = args.port or config.controller.command_port
+        server = CommandServer(controller, host="127.0.0.1", port=port)
+        server.start()
+        print(f"ATLAS AI command server: {server.url}  (Ctrl+C to stop)")
+        try:
+            import time
+
+            while True:
+                time.sleep(1.0)
+        except KeyboardInterrupt:
+            pass
+        finally:
+            server.stop()
+    return 0
+
+
+def cmd_doctor(args: argparse.Namespace) -> int:
+    _setup(args)
+    checks: list[tuple[str, bool, str]] = []
+
+    def check(name: str, ok: bool, detail: str) -> None:
+        checks.append((name, ok, detail))
+
+    check("python >= 3.10", sys.version_info[:2] >= (3, 10), sys.version.split()[0])
+
+    for module in ("numpy", "PIL", "mss", "loguru", "rapidfuzz", "requests", "dotenv", "win32gui", "pyautogui", "pyperclip"):
+        try:
+            __import__({"PIL": "PIL", "dotenv": "dotenv"}.get(module, module))
+            check(module, True, "ok")
+        except Exception as exc:
+            check(module, False, str(exc))
+
+    for optional in ("cv2", "paddleocr", "playwright"):
+        try:
+            __import__(optional)
+            check(optional, True, "ok")
+        except Exception as exc:
+            check(optional, False, str(exc))
+
+    try:
+        import pyautogui
+
+        check("screen size", True, str(pyautogui.size()))
+    except Exception as exc:
+        check("screen size", False, str(exc))
+
+    ok = True
+    for name, passed, detail in checks:
+        flag = "ok " if passed else "MISS"
+        print(f"[{flag}] {name:16s} {detail}")
+        ok = ok and passed
+    print()
+    try:
+        from atlas.config import load_config
+        from atlas.vision.manager import format_provider_status
+
+        print(format_provider_status(load_config().vision))
+    except Exception as exc:
+        print(f"[MISS] vision provider status unavailable: {exc}")
+    print()
+    print(f"version: {APP_NAME} {__version__}")
+    return 0 if ok else 1
+
+
+def cmd_vision_doctor(args: argparse.Namespace) -> int:
+    """Diagnose the Vision provider chain against a live MPF screenshot
+    without typing/clicking/scrolling/uploading - reports which provider
+    answered, latency, and structured field count. Requires Windows + an
+    open MPF window; the provider-status portion works everywhere.
+    """
+    from atlas.config import load_config
+    from atlas.vision.manager import VisionProviderManager, format_provider_status
+
+    _setup(args)
+    config = load_config()
+    print(format_provider_status(config.vision))
+    print()
+
+    manager = VisionProviderManager(config.vision)
+    if not manager.configured_providers:
+        print("No Vision provider configured - nothing further to test.")
+        print("Set GOOGLE_STUDIO_API_KEY / GROQ_API_KEY / OPENROUTER_API_KEY in .env and re-run.")
+        return 1
+
+    try:
+        from atlas.observe.window import AttachError
+        from atlas.vision.capture import WindowCapture
+        from atlas.assistant.assistant import Assistant
+
+        assistant = Assistant(config)
+        attach_target = assistant.attach_desktop(title=args.title)
+        handle = attach_target.info.handle
+        capture = WindowCapture(grabber=assistant._grabber)  # noqa: SLF001 - internal reuse, same pattern as Diagnostics.run()
+        capture.attach(handle, attach_target.info.title)
+        area = capture.capture_until_nonempty(timeout=10.0)
+    except AttachError as exc:
+        print(
+            f"error: {exc}\n"
+            f"Open the MPF (Download and Upload Form) window first, then re-run:\n"
+            f"  python main.py vision-doctor --title \"{args.title}\"",
+            file=sys.stderr,
+        )
+        return 1
+    except Exception as exc:
+        print(f"error: could not attach/capture: {exc}")
+        return 1
+
+    if area is None:
+        print("error: capture returned no image (window may be minimized or off-screen)")
+        return 1
+
+    import time as _time
+
+    start = _time.perf_counter()
+    try:
+        scene = manager.describe(area.image, window_title=attach_target.info.title)
+    except Exception as exc:
+        print(f"provider used: NONE (all failed) - {exc}")
+        return 1
+    latency_ms = (_time.perf_counter() - start) * 1000.0
+
+    print(f"provider used: {scene.provider}")
+    print(f"latency: {latency_ms:.0f} ms")
+    print(f"success: True")
+    print(f"structured field count: {len(scene.elements)}")
+    print(f"overall confidence: {scene.confidence:.2f}")
+    return 0
+
+
+def cmd_version(args: argparse.Namespace) -> int:
+    print(f"{APP_NAME} {__version__}")
+    return 0
+
+
+def cmd_diagnose(args: argparse.Namespace) -> int:
+    from atlas.diagnostics import Diagnostics
+    from atlas.observe.window import AttachError
+
+    _setup(args)
+    diag = Diagnostics()
+    try:
+        folder = diag.run(out_dir=args.out, title=args.title)
+    except AttachError as exc:
+        print(
+            f"error: {exc}\n"
+            f"Open the MPF (Download and Upload Form) window first, then re-run:\n"
+            f"  python main.py diagnose --title \"{args.title}\"",
+            file=sys.stderr,
+        )
+        return 1
+    finally:
+        diag.close()
+    print(f"diagnostics written to {folder}")
+    return 0
+
+
+def main(argv: list[str] | None = None) -> int:
+    args = _build_parser().parse_args(argv)
+    handlers = {
+        "run": cmd_run,
+        "serve": cmd_serve,
+        "doctor": cmd_doctor,
+        "version": cmd_version,
+        "diagnose": cmd_diagnose,
+        "observe": cmd_diagnose,
+        "vision-doctor": cmd_vision_doctor,
+    }
+    handler = handlers.get(args.command)
+    if handler is None:
+        print(f"unknown command: {args.command}", file=sys.stderr)
+        return 2
+    try:
+        return handler(args)
+    except KeyboardInterrupt:
+        return 130
+    except Exception as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        logger.exception("command {} failed", args.command)
+        return 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

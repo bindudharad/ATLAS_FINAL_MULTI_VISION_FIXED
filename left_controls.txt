@@ -1,0 +1,252 @@
+PATH: /Form1[0]/HP_P_01[0]/PP_03[0]/Panel2[0]
+CT: Text AID: PP_03_L_05
+NAME: 'OPEN'
+VALUE: NONE
+RECT: [95, 706, 346, 736]
+---
+PATH: /Form1[0]/HP_P_01[0]/PP_03[0]/Panel2[1]
+CT: Text AID: Label43
+NAME: 'Status'
+VALUE: NONE
+RECT: [15, 706, 88, 736]
+---
+PATH: /Form1[0]/HP_P_01[0]/PP_03[0]/Panel2[2]
+CT: Text AID: PP_03_L_04
+NAME: '26'
+VALUE: NONE
+RECT: [95, 676, 346, 706]
+---
+PATH: /Form1[0]/HP_P_01[0]/PP_03[0]/Panel2[3]
+CT: Text AID: PP_03_L_03
+NAME: '17-08-2026 10:35:00'
+VALUE: NONE
+RECT: [95, 646, 346, 676]
+---
+PATH: /Form1[0]/HP_P_01[0]/PP_03[0]/Panel2[4]
+CT: Text AID: PP_03_L_02
+NAME: '17-08-2026 06:35:00'
+VALUE: NONE
+RECT: [95, 616, 346, 646]
+---
+PATH: /Form1[0]/HP_P_01[0]/PP_03[0]/Panel2[5]
+CT: Text AID: PP_03_L_01
+NAME: '1st (Start)'
+VALUE: NONE
+RECT: [95, 586, 346, 616]
+---
+PATH: /Form1[0]/HP_P_01[0]/PP_03[0]/Panel2[6]
+CT: Text AID: Label38
+NAME: 'Qty'
+VALUE: NONE
+RECT: [15, 676, 88, 706]
+---
+PATH: /Form1[0]/HP_P_01[0]/PP_03[0]/Panel2[7]
+CT: Text AID: Label39
+NAME: 'E Date'
+VALUE: NONE
+RECT: [15, 646, 88, 676]
+---
+PATH: /Form1[0]/HP_P_01[0]/PP_03[0]/Panel2[8]
+CT: Text AID: Label40
+NAME: 'S Date'
+VALUE: NONE
+RECT: [15, 616, 88, 646]
+---
+PATH: /Form1[0]/HP_P_01[0]/PP_03[0]/Panel2[9]
+CT: Text AID: Label41
+NAME: 'Pro No'
+VALUE: NONE
+RECT: [15, 586, 88, 616]
+---
+PATH: /Form1[0]/HP_P_01[0]/PP_03[1]
+CT: Text AID: Label24
+NAME: 'Shift Details'
+VALUE: NONE
+RECT: [6, 543, 356, 578]
+---
+PATH: /Form1[0]/HP_P_01[1]/PP_02[2]/PP_05[0]
+CT: Text AID: PP_02_L_08
+NAME: '2336'
+VALUE: NONE
+RECT: [265, 445, 344, 473]
+---
+PATH: /Form1[0]/HP_P_01[1]/PP_02[2]/PP_05[1]
+CT: Text AID: PP_02_L_07
+NAME: '164'
+VALUE: NONE
+RECT: [183, 445, 262, 473]
+---
+PATH: /Form1[0]/HP_P_01[1]/PP_02[2]/PP_05[2]
+CT: Text AID: PP_02_L_06
+NAME: '2500'
+VALUE: NONE
+RECT: [99, 445, 179, 473]
+---
+PATH: /Form1[0]/HP_P_01[1]/PP_02[2]/PP_05[3]
+CT: Text AID: PP_02_L_05
+NAME: '2500'
+VALUE: NONE
+RECT: [16, 445, 95, 473]
+---
+PATH: /Form1[0]/HP_P_01[1]/PP_02[2]/PP_05[4]
+CT: Text AID: Label29
+NAME: 'Balance'
+VALUE: NONE
+RECT: [265, 416, 344, 444]
+---
+PATH: /Form1[0]/HP_P_01[1]/PP_02[2]/PP_05[5]
+CT: Text AID: Label28
+NAME: 'Finish'
+VALUE: NONE
+RECT: [183, 416, 262, 444]
+---
+PATH: /Form1[0]/HP_P_01[1]/PP_02[2]/PP_05[6]
+CT: Text AID: Label27
+NAME: 'Minimum'
+VALUE: NONE
+RECT: [99, 416, 179, 444]
+---
+PATH: /Form1[0]/HP_P_01[1]/PP_02[2]/PP_05[7]
+CT: Text AID: Label26
+NAME: 'Total'
+VALUE: NONE
+RECT: [16, 416, 95, 444]
+---
+PATH: /Form1[0]/HP_P_01[1]/PP_02[3]/PP_06[0]
+CT: Text AID: PP_02_L_04
+NAME: 'OPEN'
+VALUE: NONE
+RECT: [95, 376, 346, 406]
+---
+PATH: /Form1[0]/HP_P_01[1]/PP_02[3]/PP_06[1]
+CT: Text AID: PP_02_L_03
+NAME: '23-09-2026'
+VALUE: NONE
+RECT: [95, 346, 346, 376]
+---
+PATH: /Form1[0]/HP_P_01[1]/PP_02[3]/PP_06[2]
+CT: Text AID: PP_02_L_02
+NAME: '15-08-2026'
+VALUE: NONE
+RECT: [95, 316, 346, 346]
+---
+PATH: /Form1[0]/HP_P_01[1]/PP_02[3]/PP_06[3]
+CT: Text AID: PP_02_L_01
+NAME: 'MPF59273PRO101'
+VALUE: NONE
+RECT: [95, 286, 346, 316]
+---
+PATH: /Form1[0]/HP_P_01[1]/PP_02[3]/PP_06[4]
+CT: Text AID: Label33
+NAME: 'Status'
+VALUE: NONE
+RECT: [15, 376, 88, 406]
+---
+PATH: /Form1[0]/HP_P_01[1]/PP_02[3]/PP_06[5]
+CT: Text AID: Label32
+NAME: 'E Date'
+VALUE: NONE
+RECT: [15, 346, 88, 376]
+---
+PATH: /Form1[0]/HP_P_01[1]/PP_02[3]/PP_06[6]
+CT: Text AID: Label31
+NAME: 'S Date'
+VALUE: NONE
+RECT: [15, 316, 88, 346]
+---
+PATH: /Form1[0]/HP_P_01[1]/PP_02[3]/PP_06[7]
+CT: Text AID: Label30
+NAME: 'Pro No'
+VALUE: NONE
+RECT: [15, 286, 88, 316]
+---
+PATH: /Form1[0]/HP_P_01[1]/PP_02[4]
+CT: Text AID: Label22
+NAME: 'Project Details'
+VALUE: NONE
+RECT: [6, 243, 356, 278]
+---
+PATH: /Form1[0]/HP_P_01[2]/PP_01[1]
+CT: Text AID: PP_01_L_02
+NAME: 'BINDUDHARA D'
+VALUE: NONE
+RECT: [118, 130, 347, 190]
+---
+PATH: /Form1[0]/HP_P_01[2]/PP_01[2]
+CT: Text AID: PP_01_L_01
+NAME: 'MPF59273'
+VALUE: NONE
+RECT: [6, 93, 356, 128]
+---
+PATH: /Form1[1]/HP_P_03[0]/Form_Filling[0]/P_01[0]/P_02[1]/PP_03[0]
+CT: Text AID: BU02
+NAME: '01:18:36'
+VALUE: NONE
+RECT: [651, 875, 1064, 914]
+---
+PATH: /Form1[1]/HP_P_03[0]/Form_Filling[0]/P_01[0]/P_02[1]/PP_03[1]/Panel2[0]
+CT: Text AID: FF_L_04
+NAME: '16-08-2026 21:01:34'
+VALUE: NONE
+RECT: [736, 833, 1061, 863]
+---
+PATH: /Form1[1]/HP_P_03[0]/Form_Filling[0]/P_01[0]/P_02[1]/PP_03[1]/Panel2[1]
+CT: Text AID: FF_L_03
+NAME: '16-08-2026 17:01:34'
+VALUE: NONE
+RECT: [736, 803, 1061, 833]
+---
+PATH: /Form1[1]/HP_P_03[0]/Form_Filling[0]/P_01[0]/P_02[1]/PP_03[1]/Panel2[2]
+CT: Text AID: FF_L_02
+NAME: '2nd (Last)'
+VALUE: NONE
+RECT: [736, 773, 1061, 803]
+---
+PATH: /Form1[1]/HP_P_03[0]/Form_Filling[0]/P_01[0]/P_02[1]/PP_03[1]/Panel2[3]
+CT: Text AID: FF_L_01
+NAME: 'MPF59273PRO101'
+VALUE: NONE
+RECT: [736, 743, 1061, 773]
+---
+PATH: /Form1[1]/HP_P_03[0]/Form_Filling[0]/P_01[0]/P_02[1]/PP_03[1]/Panel2[4]
+CT: Text AID: Label38
+NAME: 'To'
+VALUE: NONE
+RECT: [656, 833, 729, 863]
+---
+PATH: /Form1[1]/HP_P_03[0]/Form_Filling[0]/P_01[0]/P_02[1]/PP_03[1]/Panel2[5]
+CT: Text AID: Label39
+NAME: 'From'
+VALUE: NONE
+RECT: [656, 803, 729, 833]
+---
+PATH: /Form1[1]/HP_P_03[0]/Form_Filling[0]/P_01[0]/P_02[1]/PP_03[1]/Panel2[6]
+CT: Text AID: Label40
+NAME: 'Shift'
+VALUE: NONE
+RECT: [656, 773, 729, 803]
+---
+PATH: /Form1[1]/HP_P_03[0]/Form_Filling[0]/P_01[0]/P_02[1]/PP_03[1]/Panel2[7]
+CT: Text AID: Label41
+NAME: 'Pro No'
+VALUE: NONE
+RECT: [656, 743, 729, 773]
+---
+PATH: /Form1[1]/HP_P_03[0]/Form_Filling[0]/P_01[0]/P_02[1]/PP_03[2]
+CT: Text AID: Label24
+NAME: 'Shift Details'
+VALUE: NONE
+RECT: [644, 694, 1073, 729]
+---
+PATH: /Form1[1]/HP_P_03[0]/Form_Filling[0]/P_01[0]/P_02[3]
+CT: Text AID: TB_01
+NAME: 'MPF (Form Filling Page)'
+VALUE: NONE
+RECT: [641, 241, 1640, 279]
+---
+PATH: /Form1[2]/HP_P_02[0]
+CT: Text AID: HP_TB_01
+NAME: 'MPF Form Filling Software (7.3) '
+VALUE: NONE
+RECT: [159, 1, 1165, 89]
+---
