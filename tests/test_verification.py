@@ -70,6 +70,9 @@ class _FakeControls(ControlInterface):
     def scroll_bar(self, direction, amount=3):
         self.calls.append(("scroll_bar", None))
         return ControlOutcome(ok=True)
+    def scroll_dropdown(self, direction, amount=3):
+        self.calls.append(("scroll_dropdown", None))
+        return ControlOutcome(ok=True)
     def paste(self, value, field_id=None): return self._record("paste", field_id)
     def upload_file(self, bbox, path, field_id=None): return self._record("upload", field_id)
 

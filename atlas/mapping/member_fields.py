@@ -43,6 +43,7 @@ MEMBER_SECTION_HEADERS = frozenset({
     "physical and habits information",
     "family information",
     "education and career information",
+    "record summary",  # Source panel parent group name for member data labels
 })
 
 #: Section headers whose lines are project/shift/timer chrome, never fields.
@@ -53,6 +54,7 @@ IGNORED_SECTION_HEADERS = frozenset({
     "physical and habits information",
     "family information",
     "education and career information",
+    "record summary",  # Source panel parent group name for member data labels
 })
 
 _MEMBER_SECTION_NORMS = frozenset(_norm(h) for h in MEMBER_SECTION_HEADERS)

@@ -380,9 +380,9 @@ def test_field_map_build_excludes_form_labels_from_left_labels() -> None:
     ``left_rect`` across the divider. They share their parent Group with the
     editable right fields; source-panel labels live under a pure-text group."""
     fields = [
-        UiaNode(name="gender", control_type="ComboBox", rect=BBox(841, 382, 54, 26),
+        UiaNode(name="gender", control_type="ComboBox", rect=BBox(961, 382, 54, 26),
                 parent={"name": "Member Basic Information", "control_type": "Group"}),
-        UiaNode(name="nakshatra", control_type="ComboBox", rect=BBox(841, 700, 132, 26),
+        UiaNode(name="nakshatra", control_type="ComboBox", rect=BBox(961, 700, 132, 26),
                 parent={"name": "Religious and Astro Information", "control_type": "Group"}),
     ]
     text = [
@@ -390,9 +390,9 @@ def test_field_map_build_excludes_form_labels_from_left_labels() -> None:
                 parent={"name": "Record summary", "control_type": "Group"}),
         UiaNode(name="Application No", control_type="Text", rect=BBox(585, 230, 140, 22),
                 parent={"name": "Record summary", "control_type": "Group"}),
-        UiaNode(name="Gender Marital Status", control_type="Text", rect=BBox(841, 382, 160, 22),
+        UiaNode(name="Gender Marital Status", control_type="Text", rect=BBox(961, 382, 160, 22),
                 parent={"name": "Member Basic Information", "control_type": "Group"}),
-        UiaNode(name="Religious and Astro Information", control_type="Text", rect=BBox(841, 666, 200, 22),
+        UiaNode(name="Religious and Astro Information", control_type="Text", rect=BBox(961, 666, 200, 22),
                 parent={"name": "Religious and Astro Information", "control_type": "Group"}),
     ]
     backend = _ParentGroupBackend(fields, text, client_size=(1920, 991))
@@ -1069,3 +1069,4 @@ def test_excel_export_appends_one_row_per_record(tmp_path: Path) -> None:
     assert second["Full Name"] == "RAVI KUMAR"
     # Exactly one row per record (header + 2 data rows).
     assert ws.max_row == 3
+

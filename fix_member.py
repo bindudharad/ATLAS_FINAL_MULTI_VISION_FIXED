@@ -1,25 +1,40 @@
-with open('C:/Users/Bindudhara D/Downloads/ATLAS_FINAL_MULTI_VISION_FIXED/DataEntry - Copy/atlas/mapping/member_fields.py', 'r') as f:
-    lines = f.readlines()
+with open('atlas/mapping/member_fields.py', 'r') as f:
+    content = f.read()
 
-lines[39] = '    \
+old = '#: Section headers whose lines ARE member data.\nMEMBER_SECTION_HEADERS = frozenset({\n    \
 member
 basic
-information\,\n'
-lines[40] = '    \religious
+information\,\n    \religious
 and
 astro
-information\,\n'
-lines.insert(41, '    \physical
+information\,\n    \physical
 and
 habits
-information\,\n')
-lines.insert(42, '    \family
-information\,\n')
-lines.insert(43, '    \education
+information\,\n    \family
+information\,\n    \education
 and
 career
-information\,\n')
+information\,\n})'
 
-with open('C:/Users/Bindudhara D/Downloads/ATLAS_FINAL_MULTI_VISION_FIXED/DataEntry - Copy/atlas/mapping/member_fields.py', 'w') as f:
-    f.writelines(lines)
-print('Fixed MEMBER_SECTION_HEADERS')
+new = '#: Section headers whose lines ARE member data.\nMEMBER_SECTION_HEADERS = frozenset({\n    \member
+basic
+information\,\n    \religious
+and
+astro
+information\,\n    \physical
+and
+habits
+information\,\n    \family
+information\,\n    \education
+and
+career
+information\,\n    \record
+summary\,  # Source panel parent group name for member data labels\n})'
+
+if old in content:
+    content = content.replace(old, new)
+    with open('atlas/mapping/member_fields.py', 'w') as f:
+        f.write(content)
+    print('Fixed!')
+else:
+    print('Not found')
