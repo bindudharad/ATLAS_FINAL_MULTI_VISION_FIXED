@@ -1,4 +1,4 @@
-﻿"""Tests for UIA scroll-container selection and the PanelScroller retry chain."""
+"""Tests for UIA scroll-container selection and the PanelScroller retry chain."""
 
 from __future__ import annotations
 

@@ -21,9 +21,11 @@ root-caused from the diagnostics instead of guessed at.
 from __future__ import annotations
 
 import hashlib
+import json
 import re
 import time
 from dataclasses import dataclass, field
+from pathlib import Path
 from typing import Any, Callable
 
 import numpy as np
@@ -42,12 +44,14 @@ ALL_PAIRS_EMPTY = "ALL_PAIRS_EMPTY"
 
 #: Hard failures after which the await loop should stop instead of spinning
 #: forever (a genuine, visible source panel that can never be read).
+# NOTE: ALL_PAIRS_EMPTY is NOT a hard failure - it may be resolved by
+#       using a different observation strategy (e.g., waiting for UI to stabilize,
+#       trying VLM if available, or different OCR preprocessing).
 HARD_FAILURE_CODES = {
     SOURCE_NOT_FOUND,
     CAPTURE_FAILED,
     VISION_FAILED,
     NO_TEXT_DETECTED,
-    ALL_PAIRS_EMPTY,
 }
 
 #: Threshold above which a VLM pair is trusted without visible-text grounding

@@ -68,6 +68,18 @@ class Dashboard:
         self._exited = threading.Event()
         self._unsub: Any = None
         self._single_form = False
+        # Dashboard control state
+        self._dashboard_paused = False
+        self._dashboard_stopped = False
+        self._audit_counters = {
+            "total_records": 0,
+            "passed": 0,
+            "blocked": 0,
+            "failed": 0,
+            "needs_review": 0,
+        }
+        self._current_audit_status = "DISCOVERING"
+        self._upload_allowed = False
 
     @property
     def enabled(self) -> bool:
@@ -226,7 +238,92 @@ class Dashboard:
         self.log = tk.Text(root, bg="#161b22", fg="#8b949e", font=("Consolas", 9), height=10, relief="flat", state="disabled")
         self.log.pack(fill="both", expand=True, padx=10, pady=(2, 10))
 
+        # --- Control Panel ---
+        sep2 = tk.Frame(root, bg="#21262d", height=1)
+        sep2.pack(fill="x", padx=10, pady=(2, 6))
+
+        # Audit status row
+        self.audit_status_var = tk.StringVar(value="AUDIT: DISCOVERING")
+        audit_status = tk.Label(root, textvariable=self.audit_status_var, fg="#f85149", bg=bg, font=("Consolas", 10, "bold"), anchor="w")
+        audit_status.pack(fill="x", padx=10)
+
+        # Audit counters
+        self.audit_counters_var = tk.StringVar(value="PASS: 0 | BLOCK: 0 | FAIL: 0 | REVIEW: 0")
+        tk.Label(root, textvariable=self.audit_counters_var, fg=fg, bg=bg, font=("Consolas", 9), anchor="w").pack(fill="x", padx=10)
+
+        # Control buttons frame
+        btn_frame = tk.Frame(root, bg=bg)
+        btn_frame.pack(fill="x", padx=10, pady=(6, 10))
+
+        self.start_btn = tk.Button(btn_frame, text="START", bg="#238636", fg="white", font=("Consolas", 9, "bold"),
+                                   command=self._on_start, width=12)
+        self.start_btn.pack(side="left", padx=2)
+
+        self.pause_btn = tk.Button(btn_frame, text="PAUSE", bg="#d29922", fg="white", font=("Consolas", 9, "bold"),
+                                   command=self._on_pause, width=12, state="disabled")
+        self.pause_btn.pack(side="left", padx=2)
+
+        self.resume_btn = tk.Button(btn_frame, text="RESUME", bg="#1f6feb", fg="white", font=("Consolas", 9, "bold"),
+                                    command=self._on_resume, width=12, state="disabled")
+        self.resume_btn.pack(side="left", padx=2)
+
+        self.stop_btn = tk.Button(btn_frame, text="STOP", bg="#da3633", fg="white", font=("Consolas", 9, "bold"),
+                                  command=self._on_stop, width=12, state="disabled")
+        self.stop_btn.pack(side="left", padx=2)
+
+        self.start_from_here_btn = tk.Button(btn_frame, text="START FROM HERE", bg="#8957e5", fg="white", font=("Consolas", 9, "bold"),
+                                             command=self._on_start_from_here, width=15, state="disabled")
+        self.start_from_here_btn.pack(side="left", padx=2)
+
+        # Upload button state
+        self.upload_btn_state_var = tk.StringVar(value="UPLOAD: BLOCKED")
+        self.upload_btn_label = tk.Label(btn_frame, textvariable=self.upload_btn_state_var, fg="#f85149", bg=bg, font=("Consolas", 9, "bold"), anchor="e")
+        self.upload_btn_label.pack(side="right", padx=10)
+
     # -- update loop ----------------------------------------------------------
+
+    def _on_start(self) -> None:
+        """Start button - begins automation."""
+        self._dashboard_paused = False
+        self._dashboard_stopped = False
+        self.start_btn.config(state="disabled")
+        self.pause_btn.config(state="normal")
+        self.stop_btn.config(state="normal")
+        self.start_from_here_btn.config(state="normal")
+        self._log("DASHBOARD: START pressed")
+        self._bus.publish(EventType.AGENT_RESUMED, {"source": "dashboard"})
+
+    def _on_pause(self) -> None:
+        """Pause button - pauses automation."""
+        self._dashboard_paused = True
+        self.pause_btn.config(state="disabled")
+        self.resume_btn.config(state="normal")
+        self._log("DASHBOARD: PAUSE pressed")
+        self._bus.publish(EventType.AGENT_PAUSED, {"source": "dashboard"})
+
+    def _on_resume(self) -> None:
+        """Resume button - resumes automation from pause."""
+        self._dashboard_paused = False
+        self.pause_btn.config(state="normal")
+        self.resume_btn.config(state="disabled")
+        self._log("DASHBOARD: RESUME pressed")
+        self._bus.publish(EventType.AGENT_RESUMED, {"source": "dashboard"})
+
+    def _on_stop(self) -> None:
+        """Stop button - stops automation cleanly."""
+        self._dashboard_stopped = True
+        self.start_btn.config(state="normal")
+        self.pause_btn.config(state="disabled")
+        self.resume_btn.config(state="disabled")
+        self.stop_btn.config(state="disabled")
+        self.start_from_here_btn.config(state="disabled")
+        self._log("DASHBOARD: STOP pressed")
+        self._bus.publish(EventType.AGENT_STOPPED, {"source": "dashboard", "reason": "user stop"})
+
+    def _on_start_from_here(self) -> None:
+        """Start From Here button - begins from current record."""
+        self._log("DASHBOARD: START FROM HERE pressed")
+        self._bus.publish(EventType.AGENT_RESUMED, {"source": "dashboard", "start_from_here": True})
 
     def _poll(self) -> None:
         if self._stop.is_set():
@@ -251,6 +348,58 @@ class Dashboard:
 
     def _handle(self, event: Event) -> None:
         if event.type == EventType.AGENT_STARTED:
+            self._started = event.data.get("started") or __import__("time").time()
+            self._completed = 0
+            self._failed = 0
+            if event.data.get("single_form"):
+                self._single_form = True
+                self.mode_var.set("mode: SINGLE FORM")
+            self._refresh_progress()
+            # Enable controls on agent start
+            self.start_btn.config(state="disabled")
+            self.pause_btn.config(state="normal")
+            self.stop_btn.config(state="normal")
+            self.start_from_here_btn.config(state="normal")
+        elif event.type == EventType.AGENT_PAUSED:
+            self._dashboard_paused = True
+            self.pause_btn.config(state="disabled")
+            self.resume_btn.config(state="normal")
+        elif event.type == EventType.AGENT_RESUMED:
+            self._dashboard_paused = False
+            self.pause_btn.config(state="normal")
+            self.resume_btn.config(state="disabled")
+        elif event.type == EventType.AGENT_STOPPED:
+            self._dashboard_stopped = True
+            self.start_btn.config(state="normal")
+            self.pause_btn.config(state="disabled")
+            self.resume_btn.config(state="disabled")
+            self.stop_btn.config(state="disabled")
+            self.start_from_here_btn.config(state="disabled")
+        elif event.type == EventType.STATE_CHANGED:
+            state = event.data.get("state", "")
+            detail = event.data.get("detail")
+            label = _STATE_LABELS.get(state, state)
+            # The status line shows the CURRENT operation: the detail (e.g.
+            # "SCROLLING LEFT PANEL (UIA)", "SCROLL VERIFY") wins over the base
+            # label so the operator never sees a stale "READING" while the
+            # agent is scrolling / writing / selecting.
+            self.state_var.set(f"state: {detail or label}")
+            # Map internal states to audit states
+            if state in ("screen_model", "observing", "observe_viewport", "analyzing"):
+                self._update_audit_state("DISCOVERING")
+            elif state in ("field_mapping", "mapping_fields"):
+                self._update_audit_state("AUDITING")
+            elif state in ("planning", "thinking"):
+                self._update_audit_state("AUDITING")
+            elif state in ("typing", "clicking", "scrolling", "writing", "selecting"):
+                self._update_audit_state("READY_TO_UPLOAD")
+            elif state == "uploading":
+                self._update_audit_state("UPLOADING")
+            elif state in ("completed", "finished"):
+                self._update_audit_state("SUCCESS")
+            elif state in ("error", "recovery"):
+                self._update_audit_state("NEEDS_REVIEW")
+        elif event.type == EventType.AUDIT_RESULT:
             self._started = event.data.get("started") or __import__("time").time()
             self._completed = 0
             self._failed = 0
@@ -361,6 +510,30 @@ class Dashboard:
             self._log(detail)
         elif event.type == EventType.NO_RECORD:
             self._log(f"no record detected: {event.data.get('reason', '')}")
+        elif event.type == EventType.AUDIT_RESULT:
+            data = event.data or {}
+            status = data.get("audit_status", "UNKNOWN")
+            upload = data.get("upload_status", "UNKNOWN")
+            reasons = data.get("reasons", [])
+            self._audit_counters["total_records"] += 1
+            if status == "PASS" and upload == "ALLOWED":
+                self._audit_counters["passed"] += 1
+                self._update_audit_state("READY_TO_UPLOAD")
+            elif status == "BLOCK" or upload == "BLOCKED":
+                self._audit_counters["blocked"] += 1
+                self._update_audit_state("NEEDS_REVIEW")
+            else:
+                self._audit_counters["failed"] += 1
+                self._update_audit_state("NEEDS_REVIEW")
+            self._refresh_audit_counters()
+            self._log(f"AUDIT: {status} | UPLOAD: {upload} | reasons: {reasons}")
+        elif event.type == EventType.UPLOAD_COMPLETED:
+            self.upload_var.set("upload: completed")
+            self.upload_btn_state_var.set("UPLOAD: ALLOWED")
+            self._audit_counters["passed"] += 1
+            self._refresh_audit_counters()
+            self._update_audit_state("SUCCESS")
+            self._log("upload completed")
         elif event.type == EventType.WORKFLOW_COMPLETE:
             data = event.data or {}
             if data.get("single_form"):
@@ -376,6 +549,36 @@ class Dashboard:
         done = getattr(self, "_completed", 0)
         failed = getattr(self, "_failed", 0)
         self.progress_var.set(f"progress: {done} records / {failed} failed")
+
+    def _update_audit_state(self, state: str) -> None:
+        """Update the audit state display and upload button state."""
+        self._current_audit_status = state
+        colors = {
+            "DISCOVERING": "#7dd3fc",
+            "AUDITING": "#d29922",
+            "READY_TO_UPLOAD": "#3fb950",
+            "UPLOADING": "#a371f7",
+            "SUCCESS": "#3fb950",
+            "NEEDS_REVIEW": "#f85149",
+        }
+        color = colors.get(state, "#c9d1d9")
+        self.audit_status_var.set(f"AUDIT: {state}")
+        # Note: tkinter Label doesn't support dynamic fg easily, so we keep text
+
+    def _refresh_audit_counters(self) -> None:
+        c = self._audit_counters
+        self.audit_counters_var.set("PASS: {passed} | BLOCK: {blocked} | FAIL: {failed} | REVIEW: {review}".format(
+            passed=c["passed"], blocked=c["blocked"], failed=c["failed"], review=c["needs_review"]))
+        # Update upload button state based on audit
+        if self._current_audit_state == "READY_TO_UPLOAD":
+            self.upload_btn_state_var.set("UPLOAD: ALLOWED")
+            self.upload_btn_label.config(fg="#3fb950")
+        elif self._current_audit_status in ("UPLOADING", "SUCCESS"):
+            self.upload_btn_state_var.set("UPLOAD: IN PROGRESS")
+            self.upload_btn_label.config(fg="#a371f7")
+        else:
+            self.upload_btn_state_var.set("UPLOAD: BLOCKED")
+            self.upload_btn_label.config(fg="#f85149")
 
     def _refresh_elapsed(self) -> None:
         import time

@@ -70,7 +70,7 @@ class VerificationStrategy(str, Enum):
     DOM_VALUE = "DOM_VALUE"  # web DOM value read
     OCR = "OCR"  # OCR the control's bounding box
     CLIPBOARD = "CLIPBOARD"  # focused clipboard read-back
-    KEYBOARD_NAV = "KEYBOARD_NAV"  # navigate and read via keyboard
+    KEYBOARD_NAV = "KEYBOARD_NAV"  # navigate and read via keyboard (SHIFT+TAB graph)
     NONE = "NONE"  # not value-verifiable
 
 
@@ -264,6 +264,8 @@ def verification_strategy_for(
         return VerificationStrategy.DOM_VALUE
     if source in {FieldSource.UIA, FieldSource.WIN32}:
         return VerificationStrategy.UIA_READ
+    if source == FieldSource.KEYBOARD:
+        return VerificationStrategy.KEYBOARD_NAV
     return VerificationStrategy.OCR
 
 

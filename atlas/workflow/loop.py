@@ -64,6 +64,7 @@ from atlas.workflow.field_engine import (
     _SUBMIT_OK,
     build_field_actions,
     build_field_queue,
+    build_field_queue_from_perception,
     classify_fill_status,
     field_coverage_summary,
     make_scroll_fn,
@@ -1063,10 +1064,46 @@ class AgentLoop:
             field_map = self._field_map
             if field_map is None or not field_map.has_form:
                 self._perception_fallback_note(analysis, "UIA field map insufficient")
-                logger.warning("field-driven path needs a UIA field map; falling back to viewport path")
-                return self._run_record(analysis, record, index)
+                # Phase 6: Try to use perception fields directly instead of viewport fallback
+                stack = self._perception_stack
+                if stack is not None:
+                    handle = None
+                    info = getattr(getattr(self, "_target", None), "info", None)
+                    if info is not None:
+                        try:
+                            handle = int(getattr(info, "handle", 0) or 0)
+                        except Exception:
+                            handle = 0
+                    image = None
+                    offset = (0, 0)
+                    capture = getattr(analysis, "capture", None)
+                    if capture is not None:
+                        try:
+                            image = getattr(capture, "image", None)
+                        except Exception:
+                            image = None
+                        offset = tuple(getattr(capture, "offset", (0, 0)) or (0, 0))
+                    try:
+                        perception_fields = stack.discover(handle=handle or None, image=image, offset=offset)
+                    except Exception as exc:
+                        logger.debug("[PERCEPTION] fallback failed: {}", exc)
+                        perception_fields = []
+                    if perception_fields:
+                        logger.info(
+                            "field-driven: using {} perception fields for fill queue",
+                            len(perception_fields),
+                        )
+                        queue = build_field_queue_from_perception(perception_fields, record)
+                        field_map = None  # no UIA map, using perception queue
+                    else:
+                        logger.warning("field-driven path needs a UIA field map; falling back to viewport path")
+                        return self._run_record(analysis, record, index)
+                else:
+                    logger.warning("field-driven path needs a UIA field map; falling back to viewport path")
+                    return self._run_record(analysis, record, index)
 
-            queue = build_field_queue(field_map, record)
+            if field_map is not None:
+                queue = build_field_queue(field_map, record)
             if not queue.items:
                 logger.warning("field-driven path found no fillable fields; falling back to viewport path")
                 return self._run_record(analysis, record, index)
@@ -1181,6 +1218,14 @@ class AgentLoop:
             self._ledger = self._queue_to_ledger(queue, record)
             self._last_audit = self._audit_record(record, queue, self._ledger, unmapped)
             audit_ok = self._last_audit.allows_submit
+            # Publish AUDIT_RESULT event for dashboard
+            self._bus.publish(EventType.AUDIT_RESULT, {
+                "audit_status": self._last_audit.audit_status.value,
+                "upload_status": self._last_audit.upload_status.value,
+                "reasons": self._last_audit.reasons,
+                "record_index": index,
+                "record_key": record.record_key or "",
+            })
             if not audit_ok:
                 logger.warning(
                     "record {}: submit BLOCKED - final audit {} (upload {})",

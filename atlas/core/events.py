@@ -64,6 +64,9 @@ class EventType(str, Enum):
     LOG = "log"
     ERROR = "error"
 
+    # audit
+    AUDIT_RESULT = "audit.result"
+
 
 @dataclass(frozen=True)
 class Event:

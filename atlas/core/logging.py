@@ -33,6 +33,7 @@ CATEGORIES: dict[str, str] = {
     "perception": "perception",
     "entry": "entry",
     "audit": "audit",
+    "mapping": "mapping",
 }
 
 #: Bound loggers for the domain categories.
@@ -46,6 +47,7 @@ watchdog_logger = logger.bind(category="watchdog")
 perception_logger = logger.bind(category="perception")
 entry_logger = logger.bind(category="entry")
 audit_logger = logger.bind(category="audit")
+mapping_logger = logger.bind(category="mapping")
 
 
 def _category_filter(category: str) -> Any:

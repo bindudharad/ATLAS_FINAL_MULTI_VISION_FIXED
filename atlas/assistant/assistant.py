@@ -40,6 +40,7 @@ from atlas.core.logging import logger
 from atlas.core.record_builder import RecordBuilder
 from atlas.core.states import AgentState
 from atlas.mapping.mapper import SemanticMapper
+from atlas.mapping.layout_cache import LayoutCache, get_layout_cache
 from atlas.mapping.uia_map import UiaFieldMap, UiaFieldMapBuilder
 from atlas.memory.store import MemoryStore
 from atlas.observe.click_hook import MouseClickListener
@@ -960,11 +961,28 @@ class Assistant:
         start_control: UiaNode | None,
         out: Path,
     ) -> UiaFieldMap:
+        # Try to load cached layout first
+        cache = get_layout_cache()
+        info = self._target.info if self._target else None
+        cached_layout = None
+        if info:
+            cached_layout = cache.load(info.title)
+            if cached_layout:
+                print(f"[LAYOUT_CACHE] Using cached MPF layout ({cached_layout.scroll_container_count} scroll containers)")
+                # Inject cached scroll containers into the builder if UIA loses them
+        
         backend = UiaBackend.instance()
         self._publish_state(AgentState.FIELD_MAPPING)
         declared = self._declared_fields()
         builder = UiaFieldMapBuilder(backend=backend, declared_fields=declared)
         field_map = builder.build(handle, start_control)
+        
+        # Save to cache for future runs
+        if info:
+            class_name = getattr(info, "class_name", "")
+            process_name = getattr(info, "process_name", "")
+            cache.update_from_field_map(field_map, info.title, class_name, process_name)
+        
         field_map.save(out / "field_map.json")
         uia_tree = backend.dump_tree(handle)
         (out / "uia_tree.json").write_text(

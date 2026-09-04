@@ -1,25 +1,7 @@
-with
-open
-atlas/mapping/member_fields.py
-r
-as
-f:
-    content = f.read()
-
-content = content.replace(
-    '    \
-education
-and
-career
-information\,\n})',
-    '    \
-education
-and
-career
-information\,\n    \record
-summary\,  # Source panel parent group name for member data labels\n})'
-)
-
-with open('atlas/mapping/member_fields.py', 'w') as f:
-    f.write(content)
-print('Done')
+with open(\"atlas/vision/capture.py\", \"r\") as f:  
+    lines = f.readlines()  
+  
+for i, line in enumerate(lines):  
+    if \"def grab_rect\" in line and \"-> np.ndarray:\" not in line:  
+        print(\"Found broken grab_rect at line\", i, \":\", line.strip())  
+        lines[i] = \"    def grab_rect(self, left: int, top: int, width: int, height: int) -> np.ndarray:\n\"  

@@ -1,0 +1,8 @@
+with open('atlas/vision/capture.py', 'rb') as f:  
+    data = f.read()  
+# Replace split(\"\\\") with split(chr(92))  
+# The bytes are: split(\" + backslash + \")  
+data = data.replace(b'split(\"\\\\\\\\\")', b'split(chr(92))')  
+with open('atlas/vision/capture.py', 'wb') as f:  
+    f.write(data)  
+print('Fixed!')  

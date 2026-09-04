@@ -55,6 +55,13 @@ class AgentState(str, Enum):
     ERROR = "error"
     RECOVERY = "recovery"
 
+    # Audit-driven lifecycle states (Phase: State Machine required states)
+    DISCOVERING = "discovering"       # observing/scanning, building field map
+    AUDITING = "auditing"             # mapping fields, building audit ledger
+    READY_TO_UPLOAD = "ready_to_upload"  # audit PASS, upload allowed
+    SUCCESS = "success"               # record uploaded and verified
+    NEEDS_REVIEW = "needs_review"     # audit BLOCK/FAIL, human intervention needed
+
 
 #: User-initiated states that may be entered from any running state.
 _INTERRUPT_STATES = {AgentState.PAUSED, AgentState.STOPPED}
@@ -94,6 +101,12 @@ _ACTIVE_STATES = {
     AgentState.WAITING_NEXT_RECORD,
     AgentState.VERIFYING,
     AgentState.RECOVERY,
+    # Audit-driven lifecycle states
+    AgentState.DISCOVERING,
+    AgentState.AUDITING,
+    AgentState.READY_TO_UPLOAD,
+    AgentState.SUCCESS,
+    AgentState.NEEDS_REVIEW,
 }
 
 
@@ -427,6 +440,66 @@ class StateMachine:
                 AgentState.IDLE,
                 AgentState.ERROR,
                 AgentState.RECOVERY,
+            }
+
+        # Audit-driven lifecycle states
+        if current == AgentState.DISCOVERING:
+            return new_state in {
+                AgentState.AUDITING,
+                AgentState.WATCHING,
+                AgentState.OBSERVING,
+                AgentState.SCREEN_MODEL,
+                AgentState.RECORD_EXTRACTION,
+                AgentState.ERROR,
+                AgentState.RECOVERY,
+            }
+        if current == AgentState.AUDITING:
+            return new_state in {
+                AgentState.READY_TO_UPLOAD,
+                AgentState.NEEDS_REVIEW,
+                AgentState.WATCHING,
+                AgentState.PLANNING,
+                AgentState.FIELD_MAPPING,
+                AgentState.MAPPING_RECOVERY,
+                AgentState.ERROR,
+                AgentState.RECOVERY,
+            }
+        if current == AgentState.READY_TO_UPLOAD:
+            return new_state in {
+                AgentState.UPLOADING,
+                AgentState.SUCCESS,
+                AgentState.NEEDS_REVIEW,
+                AgentState.WATCHING,
+                AgentState.ERROR,
+                AgentState.RECOVERY,
+            }
+        if current == AgentState.UPLOADING:
+            return new_state in {
+                AgentState.SUCCESS,
+                AgentState.NEEDS_REVIEW,
+                AgentState.SUBMIT_VERIFICATION,
+                AgentState.WAITING_FOR_RESET,
+                AgentState.RESET_DETECTED,
+                AgentState.ERROR,
+                AgentState.RECOVERY,
+            }
+        if current == AgentState.SUCCESS:
+            return new_state in {
+                AgentState.WATCHING,
+                AgentState.WAITING,
+                AgentState.NEXT_RECORD,
+                AgentState.IDLE,
+            }
+        if current == AgentState.NEEDS_REVIEW:
+            return new_state in {
+                AgentState.WATCHING,
+                AgentState.AUDITING,
+                AgentState.PLANNING,
+                AgentState.FIELD_MAPPING,
+                AgentState.MAPPING_RECOVERY,
+                AgentState.RECOVERY,
+                AgentState.ERROR,
+                AgentState.STOPPED,
             }
         return False
 

@@ -1,0 +1,3 @@
+chunks = []  
+chunks.append(b'\\\"\\\"\\\"Window client-area capture.') >> write_capture.py && echo chunks.append(b'') >> write_capture.py && echo chunks.append(b'Attaches to a single target window and captures ONLY its client area, returning') >> write_capture.py && echo chunks.append(b'the image as a numpy array together with the offset of the client area on the') >> write_capture.py && echo chunks.append(b'physical screen (so element boxes can be translated to absolute screen') >> write_capture.py && echo chunks.append(b'coordinates for mouse actions).') >> write_capture.py && echo chunks.append(b'\\\"\\\"\\\"')  
+chunks.append(b'') 

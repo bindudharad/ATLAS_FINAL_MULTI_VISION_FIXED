@@ -637,23 +637,61 @@ def pair_source_pairs(
         # skip the OCR/geometric fallback passes entirely.
         return _gate_pairs(pairs, ordered, member_only)
 
-    ocr_texts = [getattr(line, "text", "") for line in ocr_lines if getattr(line, "text", "")]
+        # --- NEW: OCR row-based pairing ---
+    def _group_ocr_by_row(ocr_lines, y_tolerance=12):
+        # Group OCR lines by y-coordinate
+        rows = []
+        line_data = []
+        for line in ocr_lines:
+            text = getattr(line, "text", "")
+            if not text: continue
+            bbox = getattr(line, "bbox", None)
+            if bbox is None: continue
+            center_y = bbox.top + bbox.height / 2
+            line_data.append((line, center_y))
+        line_data.sort(key=lambda x: x[1])
+        for line, center_y in line_data:
+            placed = False
+            for row in rows:
+                row_y = sum(i[1] for i in row) / len(row)
+                if abs(center_y - row_y) <= y_tolerance:
+                    row.append((line, center_y))
+                    placed = True
+                    break
+            if not placed: rows.append([(line, center_y)])
+        return rows
 
-    for text in ocr_texts:
-        text = (text or "").strip()
-        if not text:
-            continue
-        parts = re.split(r"[:：]\s*", text, maxsplit=1)
-        if len(parts) == 2 and parts[0].strip():
-            label = _clean_label(parts[0])
-            if is_likely_value(label):
-                if diagnostics is not None:
-                    diagnostics.reject(label, parts[1].strip(), "label_is_value")
-                continue
-            if label and not is_noise_label(label) and label not in pairs and parts[1].strip():
-                pairs[label] = parts[1].strip()
-                ordered.append(label)
+    ocr_rows = _group_ocr_by_row(ocr_lines)
+    for row in ocr_rows:
+        row.sort(key=lambda x: x[0].bbox.left if x[0].bbox else 0)
+        for i in range(len(row) - 1):
+            l, r = row[i], row[i+1]
+            lt = getattr(l[0], "text", "").strip()
+            rt = getattr(r[0], "text", "").strip()
+            if not lt or not rt: continue
+            lc = _clean_label(lt)
+            rc = _clean_label(rt)
+            if is_likely_value(lc): continue
+            if is_noise_label(lc) or is_noise_label(rc): continue
+            if lc == rc: continue
+            if lc in pairs: continue
+            pairs[lc] = rc
+            ordered.append(lc)
+            if diagnostics: diagnostics.accept(lc, rc, source="ocr_row")
 
+    # --- ORIGINAL: OCR colon-split fallback ---
+    ocr_texts = [getattr(l, "text", "") for l in ocr_lines if getattr(l, "text", "")]
+    for t in ocr_texts:
+        t = (t or "").strip()
+        if not t: continue
+        import re
+        p = re.split(r"[:：]", t, 1)
+        if len(p)==2 and p[0].strip():
+            lb = _clean_label(p[0])
+            if is_likely_value(lb): continue
+            if lb and not is_noise_label(lb) and lb not in pairs and p[1].strip():
+                pairs[lb] = p[1].strip()
+                ordered.append(lb)
     consumed: set[int] = set(colon_block_consumed)
     if uia_labels:
         rows = _group_same_row(

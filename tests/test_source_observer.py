@@ -147,8 +147,9 @@ def test_hard_failure_codes_are_exposed() -> None:
     assert SOURCE_NOT_FOUND in HARD_FAILURE_CODES
     assert CAPTURE_FAILED in HARD_FAILURE_CODES
     assert NO_TEXT_DETECTED in HARD_FAILURE_CODES
-    assert ALL_PAIRS_EMPTY in HARD_FAILURE_CODES
     assert VISION_FAILED in HARD_FAILURE_CODES
+    # ALL_PAIRS_EMPTY is now a soft failure (can be retried with different strategy)
+    assert ALL_PAIRS_EMPTY not in HARD_FAILURE_CODES
 
 
 # ---------------------------------------------------------------------------

@@ -72,28 +72,9 @@ class ScreenGrabber:
         self._fallback_until = 0.0
 
     def grab_rect(self, left: int, top: int, width: int, height: int) -> np.ndarray:
-        """Grab a rectangle and return an RGB numpy array."""
-        if time.time() < self._fallback_until:
-            return self._grab_bitblt(left, top, width, height)
-        try:
-            image = self._grab_mss(left, top, width, height)
-        except Exception as exc:
-            self._consecutive_failures += 1
-            if self._consecutive_failures >= self._FALLBACK_AFTER:
-                self._fallback_until = time.time() + self._FALLBACK_WINDOW
-                logger.warning(
-                    "mss grab failed {}x ({}): switching to BitBlt fallback", self._consecutive_failures, exc
-                )
-                return self._grab_bitblt(left, top, width, height)
-            logger.debug("mss grab failed ({}): re-initialising grabber: {}", self._consecutive_failures, exc)
-            self._reinit()
-            try:
-                image = self._grab_mss(left, top, width, height)
-            except Exception as retry_exc:
-                logger.warning("mss grab failed after reinit ({}): using BitBlt fallback", retry_exc)
-                return self._grab_bitblt(left, top, width, height)
-        self._consecutive_failures = 0
-        return image
+        """Grab a rectangle and return an RGB numpy array using BitBlt (avoids mss window maximization side effect)."""
+        # Use BitBlt directly to avoid mss side effects
+        return self._grab_bitblt(left, top, width, height)
 
     def _grab_mss(self, left: int, top: int, width: int, height: int) -> np.ndarray:
         shot = self._mss.grab({"left": left, "top": top, "width": width, "height": height})
@@ -346,7 +327,7 @@ def _is_valid_target_window(info: dict) -> bool:
     class_name = (info.get("class_name") or "").strip()
     if class_name in _DESKTOP_SHELL_CLASSES:
         return False
-    exe = (info.get("executable") or "").strip().split("\\")[-1].lower()
+    exe = (info.get("executable") or "").strip().split(chr(92))[-1].lower()
     if not exe or exe in {s.lower() for s in _SYSTEM_EXECUTABLES}:
         return False
     return True

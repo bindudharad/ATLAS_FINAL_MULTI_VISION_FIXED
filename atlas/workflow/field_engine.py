@@ -36,6 +36,14 @@ from typing import Any
 
 from atlas.act.models import Action, ActionType
 from atlas.understanding.value_shape import repair_value
+from atlas.understanding.target_field import (
+    FieldSource,
+    TargetControlType,
+    TargetField,
+    control_type_for_uia,
+    interaction_strategy_for,
+    verification_strategy_for,
+)
 from atlas.vision.models import BBox, ElementType
 from atlas.workflow.scroller import (
     SCROLL_METHOD_DOM,
@@ -174,6 +182,70 @@ def _target_keys(node: Any) -> set[str]:
     ):
         keys.update(_alias_keys(text))
     return keys
+
+
+def _target_field_to_field_target(tf: TargetField, ordinal: int) -> FieldTarget:
+    """Convert a perception TargetField into a FieldTarget for the fill queue.
+
+    The TargetField already has normalized control_type, bounds, label, options, etc.
+    We wrap it in a duck-typed node so the existing FieldTarget properties work.
+    """
+    from types import SimpleNamespace
+    node = SimpleNamespace(
+        name=tf.label,
+        automation_id=tf.id,
+        control_type=tf.control_type.value if isinstance(tf.control_type, TargetControlType) else str(tf.control_type),
+        rect=tf.bounds,
+        enabled=tf.enabled,
+        visible=tf.visible,
+        options=tf.options,
+        value=tf.value,
+    )
+    # Create a match key based on the TargetField's id
+    match_key = ("perception", tf.id)
+    ft = FieldTarget(node=node, value=tf.value, ordinal=ordinal, _match_key=match_key)
+    return ft
+
+
+def build_field_queue_from_perception(
+    fields: list[TargetField],
+    record: Any,
+    mappings: list[dict[str, str]] | None = None,
+) -> PendingFieldQueue:
+    """Build an ordered fill queue from perception TargetFields (fallback path).
+
+    This is the Phase 6 integration: when UIA field map is insufficient, the
+    perception stack (UIA + CV/OCR) provides TargetFields which we convert
+    into the same FieldTarget queue the field-driven engine uses.
+    """
+    pairs = dict(getattr(record, "pairs", {}) or {})
+    # Build a target_value index from mappings
+    target_value: dict[str, str] = {}
+    if mappings:
+        source_index = _source_value_index(pairs)
+        for m in mappings:
+            source = m.get("source", "")
+            target = m.get("target", "")
+            if not target:
+                continue
+            value = next((source_index[k] for k in _alias_keys(source) if k in source_index), None)
+            if value is not None:
+                for key in {target, *_alias_keys(target)}:
+                    if key:
+                        target_value.setdefault(key, value)
+    targets: list[FieldTarget] = []
+    for ordinal, tf in enumerate(fields):
+        ft = _target_field_to_field_target(tf, ordinal)
+        # Try to bind a source value if available
+        key = _clean_label(tf.label) or tf.id
+        if ft.value is None:
+            ft.value = target_value.get(key)
+            if ft.value is None:
+                ft.value = next((target_value[tkey] for tkey in _target_keys(ft.node) if tkey in target_value), None)
+        targets.append(ft)
+    # Merge date groups if applicable
+    merged = _merge_date_groups(targets, _find_date_value(pairs))
+    return PendingFieldQueue(merged, record=record, mappings=mappings or [])
 
 
 def _mapped_target_values(

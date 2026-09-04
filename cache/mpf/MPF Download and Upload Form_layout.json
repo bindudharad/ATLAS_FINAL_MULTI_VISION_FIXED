@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "created_at": 1788501550.529863,
+  "updated_at": 1788501550.529863,
+  "window_title": "MPF (Download and Upload Form)",
+  "window_class": "",
+  "process_name": "",
+  "client_origin": [
+    0,
+    29
+  ],
+  "client_size": [
+    800,
+    600
+  ],
+  "left_rect": null,
+  "right_rect": {
+    "x": 500,
+    "y": 40,
+    "width": 200,
+    "height": 24
+  },
+  "left_labels": [],
+  "right_fields": [
+    {
+      "name": "Full Name",
+      "control_type": "Edit",
+      "automation_id": "",
+      "class_name": "",
+      "handle": 2001,
+      "rect": {
+        "x": 500,
+        "y": 40,
+        "width": 200,
+        "height": 24
+      },
+      "value": null,
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "textbox",
+      "framework_id": "",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": null,
+      "children": []
+    }
+  ],
+  "upload_button": null,
+  "scroll_containers": [],
+  "mappings": [],
+  "source_field_count": 0,
+  "target_field_count": 1,
+  "scroll_container_count": 0
+}

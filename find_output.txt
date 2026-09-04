@@ -1,0 +1,2 @@
+Found at: 2284
+'def grab_rect(self, left: int, top: int, width: int, height: int) -        """Grab a rectangle and return an RGB numpy array using BitBlt (avoids mss '

@@ -63,7 +63,7 @@ def test_category_namespace_covers_spec_files() -> None:
     # "errors" is a dedicated error-level sink, not a category binding.
     assert set(CATEGORIES.values()) == {
         "actions", "ocr", "uia", "timings", "focus", "verification", "watchdog",
-        "perception", "entry", "audit",
+        "perception", "entry", "audit", "mapping",
     }
 
 

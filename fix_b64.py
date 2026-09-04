@@ -1,1 +1,11 @@
-import base64; exec(base64.b64decode('d2l0aCBvcGVuKCdhdGxhcy9tYXBwaW5nL21lbWJlcl9maWVsZHMvcHknLCAicicpIGFzIGY6CiAgICBjb250ZW50ID0gZi5yZWFkKCkKCmlkeCA9IGNvbnRlbnQuZmluZCgnTUVNQkVSX1NFQ1RJT05fSEVBRERSU1MgPSBmcm96ZW5zZXQoJykKaWYgaWR4ICE9IC0xOgogICAgaWR4MiA9IGNvbnRlbnQuZmluZCgnfSknLCBpZHgpCiAgICBpZiBpZHgyICE9IC0xOgogICAgICAgIGluc2VydF9zdHIgPSAnICAgInJlY29yZCBzdW1tYXJ5IiwgIyBTb3VyY2UgcGFuZWwgcGFyZW50IGdyb3VwIG5hbWUgZm9yIG1lbWJlciBkYXRhIGxhYmVsc1xuJwogICAgICAgIG5ld19jb250ZW50ID0gY29udGVudFskaWR4MjogXSBhZCAgY29udGVudFtpZHgyOl0KICAgICAgICB3aXRoIG9wZW4oJ2F0bGFzL21hcHBpbmcvbWVtYmVyX2ZpZWxkcy5weScsICd3JykgYXMgZjoKICAgICAgICAgICAgZi53cml0ZShuZXdfY29udGVudCkKICAgICAgICBwcmludCgnRml4ZWQhJykKICAgIGVsc2U6CiAgICAgICAgcHJpbnQoJ0NvdWxkIG5vdCBmaW5kIGNsb3NpbmcgYnJhY2UnKQplbHNlOgogICAgcHJpbnQoJ0NvdWxkIG5vdCBmaW5kIE1FTUJFUl9TRUNUSU9OX0hFQURFUlMnKQ=='))
+import base64  
+with open('capture_b64.txt', 'r') as f:  
+    encoded = f.read()  
+content = base64.b64decode(encoded).decode('utf-8')  
+# Fix the grab_rect method in the base64 content  
+content = content.replace('    def grab_rect(self, left: int, top: int, width: int, height: int) -        \\\"\\\"\\\"Grab a rectangle and return an RGB numpy array using BitBlt (avoids mss window maximization side effect).\\\"\\\"\\\"', '    def grab_rect(self, left: int, top: int, width: int, height: int) -        \\\"\\\"\\\"Grab a rectangle and return an RGB numpy array using BitBlt (avoids mss window maximization side effect).\\\"\\\"\\\"')  
+content = content.replace('        # Use BitBlt directly to avoid mss side effects\\n\\n        # Use BitBlt directly to avoid mss side effects', '        # Use BitBlt directly to avoid mss side effects')  
+new_encoded = base64.b64encode(content.encode('utf-8')).decode('utf-8')  
+with open('capture_b64.txt', 'w') as f:  
+    f.write(new_encoded)  
+print('Fixed base64')  

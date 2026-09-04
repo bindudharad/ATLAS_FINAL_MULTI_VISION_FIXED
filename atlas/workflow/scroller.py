@@ -1,4 +1,4 @@
-﻿"""Scroll-container discovery and UIA-based panel scrolling for a split form.
+"""Scroll-container discovery and UIA-based panel scrolling for a split form.
 
 The outer application window never scrolls - only internal panels do. A split
 (MPF-style) form has two such panels:

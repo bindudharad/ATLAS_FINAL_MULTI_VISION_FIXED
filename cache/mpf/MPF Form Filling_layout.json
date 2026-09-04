@@ -1,0 +1,2392 @@
+{
+  "version": 1,
+  "created_at": 1788438628.5445807,
+  "updated_at": 1788438628.5445807,
+  "window_title": "MPF Form Filling",
+  "window_class": "WindowsForms10.Window.8.app.0.141b42a_r7_ad1",
+  "process_name": "",
+  "client_origin": [
+    0,
+    0
+  ],
+  "client_size": [
+    1920,
+    1080
+  ],
+  "left_rect": {
+    "x": 6,
+    "y": 1,
+    "width": 1159,
+    "height": 826
+  },
+  "right_rect": {
+    "x": 1239,
+    "y": 368,
+    "width": 360,
+    "height": 1572
+  },
+  "left_labels": [
+    {
+      "name": "Wrong",
+      "control_type": "Text",
+      "automation_id": "Label42",
+      "class_name": "WindowsForms10.STATIC.app.0.141b42a_r7_ad1",
+      "handle": 854276,
+      "rect": {
+        "x": 265,
+        "y": 799,
+        "width": 79,
+        "height": 28
+      },
+      "value": null,
+      "enabled": false,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": false,
+      "element_type": "label",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "Short Report (First 500 Nos)",
+        "control_type": "Pane",
+        "automation_id": "Panel3"
+      },
+      "children": []
+    },
+    {
+      "name": "Correct",
+      "control_type": "Text",
+      "automation_id": "Label44",
+      "class_name": "WindowsForms10.STATIC.app.0.141b42a_r7_ad1",
+      "handle": 723296,
+      "rect": {
+        "x": 183,
+        "y": 799,
+        "width": 79,
+        "height": 28
+      },
+      "value": null,
+      "enabled": false,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": false,
+      "element_type": "label",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "Short Report (First 500 Nos)",
+        "control_type": "Pane",
+        "automation_id": "Panel3"
+      },
+      "children": []
+    },
+    {
+      "name": "Finish",
+      "control_type": "Text",
+      "automation_id": "Label45",
+      "class_name": "WindowsForms10.STATIC.app.0.141b42a_r7_ad1",
+      "handle": 2754946,
+      "rect": {
+        "x": 99,
+        "y": 799,
+        "width": 80,
+        "height": 28
+      },
+      "value": null,
+      "enabled": false,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": false,
+      "element_type": "label",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "Short Report (First 500 Nos)",
+        "control_type": "Pane",
+        "automation_id": "Panel3"
+      },
+      "children": []
+    },
+    {
+      "name": "Short Report (First 500 Nos)",
+      "control_type": "Text",
+      "automation_id": "Label25",
+      "class_name": "WindowsForms10.STATIC.app.0.141b42a_r7_ad1",
+      "handle": 526786,
+      "rect": {
+        "x": 6,
+        "y": 753,
+        "width": 350,
+        "height": 35
+      },
+      "value": null,
+      "enabled": false,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": false,
+      "element_type": "label",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "OPEN",
+        "control_type": "Pane",
+        "automation_id": "PP_04"
+      },
+      "children": []
+    },
+    {
+      "name": "Status",
+      "control_type": "Text",
+      "automation_id": "Label43",
+      "class_name": "WindowsForms10.STATIC.app.0.141b42a_r7_ad1",
+      "handle": 592380,
+      "rect": {
+        "x": 15,
+        "y": 706,
+        "width": 73,
+        "height": 30
+      },
+      "value": null,
+      "enabled": false,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": false,
+      "element_type": "label",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "Shift Details",
+        "control_type": "Pane",
+        "automation_id": "Panel2"
+      },
+      "children": []
+    },
+    {
+      "name": "1st (Start)",
+      "control_type": "Text",
+      "automation_id": "PP_03_L_01",
+      "class_name": "WindowsForms10.STATIC.app.0.141b42a_r7_ad1",
+      "handle": 1182200,
+      "rect": {
+        "x": 95,
+        "y": 586,
+        "width": 251,
+        "height": 30
+      },
+      "value": null,
+      "enabled": false,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": false,
+      "element_type": "label",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "Shift Details",
+        "control_type": "Pane",
+        "automation_id": "Panel2"
+      },
+      "children": []
+    },
+    {
+      "name": "E Date",
+      "control_type": "Text",
+      "automation_id": "Label39",
+      "class_name": "WindowsForms10.STATIC.app.0.141b42a_r7_ad1",
+      "handle": 920062,
+      "rect": {
+        "x": 15,
+        "y": 646,
+        "width": 73,
+        "height": 30
+      },
+      "value": null,
+      "enabled": false,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": false,
+      "element_type": "label",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "Shift Details",
+        "control_type": "Pane",
+        "automation_id": "Panel2"
+      },
+      "children": []
+    },
+    {
+      "name": "S Date",
+      "control_type": "Text",
+      "automation_id": "Label40",
+      "class_name": "WindowsForms10.STATIC.app.0.141b42a_r7_ad1",
+      "handle": 657902,
+      "rect": {
+        "x": 15,
+        "y": 616,
+        "width": 73,
+        "height": 30
+      },
+      "value": null,
+      "enabled": false,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": false,
+      "element_type": "label",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "Shift Details",
+        "control_type": "Pane",
+        "automation_id": "Panel2"
+      },
+      "children": []
+    },
+    {
+      "name": "Pro No",
+      "control_type": "Text",
+      "automation_id": "Label41",
+      "class_name": "WindowsForms10.STATIC.app.0.141b42a_r7_ad1",
+      "handle": 1312504,
+      "rect": {
+        "x": 15,
+        "y": 586,
+        "width": 73,
+        "height": 30
+      },
+      "value": null,
+      "enabled": false,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": false,
+      "element_type": "label",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "Shift Details",
+        "control_type": "Pane",
+        "automation_id": "Panel2"
+      },
+      "children": []
+    },
+    {
+      "name": "Shift Details",
+      "control_type": "Text",
+      "automation_id": "Label24",
+      "class_name": "WindowsForms10.STATIC.app.0.141b42a_r7_ad1",
+      "handle": 1640804,
+      "rect": {
+        "x": 6,
+        "y": 543,
+        "width": 350,
+        "height": 35
+      },
+      "value": null,
+      "enabled": false,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": false,
+      "element_type": "label",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "",
+        "control_type": "Pane",
+        "automation_id": "PP_03"
+      },
+      "children": []
+    },
+    {
+      "name": "Balance",
+      "control_type": "Text",
+      "automation_id": "Label29",
+      "class_name": "WindowsForms10.STATIC.app.0.141b42a_r7_ad1",
+      "handle": 854218,
+      "rect": {
+        "x": 265,
+        "y": 416,
+        "width": 79,
+        "height": 28
+      },
+      "value": null,
+      "enabled": false,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": false,
+      "element_type": "label",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "OPEN",
+        "control_type": "Pane",
+        "automation_id": "PP_05"
+      },
+      "children": []
+    },
+    {
+      "name": "Finish",
+      "control_type": "Text",
+      "automation_id": "Label28",
+      "class_name": "WindowsForms10.STATIC.app.0.141b42a_r7_ad1",
+      "handle": 526780,
+      "rect": {
+        "x": 183,
+        "y": 416,
+        "width": 79,
+        "height": 28
+      },
+      "value": null,
+      "enabled": false,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": false,
+      "element_type": "label",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "OPEN",
+        "control_type": "Pane",
+        "automation_id": "PP_05"
+      },
+      "children": []
+    },
+    {
+      "name": "Minimum",
+      "control_type": "Text",
+      "automation_id": "Label27",
+      "class_name": "WindowsForms10.STATIC.app.0.141b42a_r7_ad1",
+      "handle": 1640846,
+      "rect": {
+        "x": 99,
+        "y": 416,
+        "width": 80,
+        "height": 28
+      },
+      "value": null,
+      "enabled": false,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": false,
+      "element_type": "label",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "OPEN",
+        "control_type": "Pane",
+        "automation_id": "PP_05"
+      },
+      "children": []
+    },
+    {
+      "name": "Total",
+      "control_type": "Text",
+      "automation_id": "Label26",
+      "class_name": "WindowsForms10.STATIC.app.0.141b42a_r7_ad1",
+      "handle": 460770,
+      "rect": {
+        "x": 16,
+        "y": 416,
+        "width": 79,
+        "height": 28
+      },
+      "value": null,
+      "enabled": false,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": false,
+      "element_type": "label",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "OPEN",
+        "control_type": "Pane",
+        "automation_id": "PP_05"
+      },
+      "children": []
+    },
+    {
+      "name": "MPF59273PRO101",
+      "control_type": "Text",
+      "automation_id": "PP_02_L_01",
+      "class_name": "WindowsForms10.STATIC.app.0.141b42a_r7_ad1",
+      "handle": 2688338,
+      "rect": {
+        "x": 95,
+        "y": 286,
+        "width": 251,
+        "height": 30
+      },
+      "value": null,
+      "enabled": false,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": false,
+      "element_type": "label",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "Project Details",
+        "control_type": "Pane",
+        "automation_id": "PP_06"
+      },
+      "children": []
+    },
+    {
+      "name": "Status",
+      "control_type": "Text",
+      "automation_id": "Label33",
+      "class_name": "WindowsForms10.STATIC.app.0.141b42a_r7_ad1",
+      "handle": 395748,
+      "rect": {
+        "x": 15,
+        "y": 376,
+        "width": 73,
+        "height": 30
+      },
+      "value": null,
+      "enabled": false,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": false,
+      "element_type": "label",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "Project Details",
+        "control_type": "Pane",
+        "automation_id": "PP_06"
+      },
+      "children": []
+    },
+    {
+      "name": "E Date",
+      "control_type": "Text",
+      "automation_id": "Label32",
+      "class_name": "WindowsForms10.STATIC.app.0.141b42a_r7_ad1",
+      "handle": 68098,
+      "rect": {
+        "x": 15,
+        "y": 346,
+        "width": 73,
+        "height": 30
+      },
+      "value": null,
+      "enabled": false,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": false,
+      "element_type": "label",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "Project Details",
+        "control_type": "Pane",
+        "automation_id": "PP_06"
+      },
+      "children": []
+    },
+    {
+      "name": "S Date",
+      "control_type": "Text",
+      "automation_id": "Label31",
+      "class_name": "WindowsForms10.STATIC.app.0.141b42a_r7_ad1",
+      "handle": 68100,
+      "rect": {
+        "x": 15,
+        "y": 316,
+        "width": 73,
+        "height": 30
+      },
+      "value": null,
+      "enabled": false,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": false,
+      "element_type": "label",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "Project Details",
+        "control_type": "Pane",
+        "automation_id": "PP_06"
+      },
+      "children": []
+    },
+    {
+      "name": "Pro No",
+      "control_type": "Text",
+      "automation_id": "Label30",
+      "class_name": "WindowsForms10.STATIC.app.0.141b42a_r7_ad1",
+      "handle": 68102,
+      "rect": {
+        "x": 15,
+        "y": 286,
+        "width": 73,
+        "height": 30
+      },
+      "value": null,
+      "enabled": false,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": false,
+      "element_type": "label",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "Project Details",
+        "control_type": "Pane",
+        "automation_id": "PP_06"
+      },
+      "children": []
+    },
+    {
+      "name": "Project Details",
+      "control_type": "Text",
+      "automation_id": "Label22",
+      "class_name": "WindowsForms10.STATIC.app.0.141b42a_r7_ad1",
+      "handle": 68104,
+      "rect": {
+        "x": 6,
+        "y": 243,
+        "width": 350,
+        "height": 35
+      },
+      "value": null,
+      "enabled": false,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": false,
+      "element_type": "label",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "BINDUDHARA D",
+        "control_type": "Pane",
+        "automation_id": "PP_02"
+      },
+      "children": []
+    },
+    {
+      "name": "BINDUDHARA D",
+      "control_type": "Text",
+      "automation_id": "PP_01_L_02",
+      "class_name": "WindowsForms10.STATIC.app.0.141b42a_r7_ad1",
+      "handle": 983072,
+      "rect": {
+        "x": 118,
+        "y": 130,
+        "width": 229,
+        "height": 60
+      },
+      "value": null,
+      "enabled": false,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": false,
+      "element_type": "label",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "MPF Form Filling Software (7.3) ",
+        "control_type": "Pane",
+        "automation_id": "PP_01"
+      },
+      "children": []
+    },
+    {
+      "name": "MPF59273",
+      "control_type": "Text",
+      "automation_id": "PP_01_L_01",
+      "class_name": "WindowsForms10.STATIC.app.0.141b42a_r7_ad1",
+      "handle": 395566,
+      "rect": {
+        "x": 6,
+        "y": 93,
+        "width": 350,
+        "height": 35
+      },
+      "value": null,
+      "enabled": false,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": false,
+      "element_type": "label",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "MPF Form Filling Software (7.3) ",
+        "control_type": "Pane",
+        "automation_id": "PP_01"
+      },
+      "children": []
+    },
+    {
+      "name": "1st (Start)",
+      "control_type": "Text",
+      "automation_id": "FF_L_02",
+      "class_name": "WindowsForms10.STATIC.app.0.141b42a_r7_ad1",
+      "handle": 68348,
+      "rect": {
+        "x": 736,
+        "y": 773,
+        "width": 325,
+        "height": 30
+      },
+      "value": null,
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": false,
+      "element_type": "label",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "Shift Details",
+        "control_type": "Pane",
+        "automation_id": "Panel2"
+      },
+      "children": []
+    },
+    {
+      "name": "MPF59273PRO101",
+      "control_type": "Text",
+      "automation_id": "FF_L_01",
+      "class_name": "WindowsForms10.STATIC.app.0.141b42a_r7_ad1",
+      "handle": 68350,
+      "rect": {
+        "x": 736,
+        "y": 743,
+        "width": 325,
+        "height": 30
+      },
+      "value": null,
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": false,
+      "element_type": "label",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "Shift Details",
+        "control_type": "Pane",
+        "automation_id": "Panel2"
+      },
+      "children": []
+    },
+    {
+      "name": "Pro No",
+      "control_type": "Text",
+      "automation_id": "Label41",
+      "class_name": "WindowsForms10.STATIC.app.0.141b42a_r7_ad1",
+      "handle": 68358,
+      "rect": {
+        "x": 656,
+        "y": 743,
+        "width": 73,
+        "height": 30
+      },
+      "value": null,
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": false,
+      "element_type": "label",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "Shift Details",
+        "control_type": "Pane",
+        "automation_id": "Panel2"
+      },
+      "children": []
+    },
+    {
+      "name": "Shift Details",
+      "control_type": "Text",
+      "automation_id": "Label24",
+      "class_name": "WindowsForms10.STATIC.app.0.141b42a_r7_ad1",
+      "handle": 68360,
+      "rect": {
+        "x": 644,
+        "y": 694,
+        "width": 429,
+        "height": 35
+      },
+      "value": null,
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": false,
+      "element_type": "label",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "MPF (Form Filling Page)",
+        "control_type": "Pane",
+        "automation_id": "PP_03"
+      },
+      "children": []
+    },
+    {
+      "name": "MPF Form Filling Software (7.3) ",
+      "control_type": "Text",
+      "automation_id": "HP_TB_01",
+      "class_name": "WindowsForms10.STATIC.app.0.141b42a_r7_ad1",
+      "handle": 461104,
+      "rect": {
+        "x": 159,
+        "y": 1,
+        "width": 1006,
+        "height": 88
+      },
+      "value": null,
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": false,
+      "element_type": "label",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "",
+        "control_type": "Pane",
+        "automation_id": "HP_P_02"
+      },
+      "children": []
+    }
+  ],
+  "right_fields": [
+    {
+      "name": "Annual Income",
+      "control_type": "ComboBox",
+      "automation_id": "FF_CB_38",
+      "class_name": "WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1",
+      "handle": 133686,
+      "rect": {
+        "x": 1239,
+        "y": 1906,
+        "width": 360,
+        "height": 34
+      },
+      "value": "",
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "combobox",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "",
+        "control_type": "Pane",
+        "automation_id": "Panel9"
+      },
+      "children": [
+        {
+          "name": "",
+          "control_type": "Text",
+          "automation_id": ""
+        },
+        {
+          "name": "Open",
+          "control_type": "Button",
+          "automation_id": ""
+        }
+      ]
+    },
+    {
+      "name": "Emp Status",
+      "control_type": "ComboBox",
+      "automation_id": "FF_CB_37",
+      "class_name": "WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1",
+      "handle": 133682,
+      "rect": {
+        "x": 1239,
+        "y": 1869,
+        "width": 360,
+        "height": 34
+      },
+      "value": "",
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "combobox",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "",
+        "control_type": "Pane",
+        "automation_id": "Panel9"
+      },
+      "children": [
+        {
+          "name": "",
+          "control_type": "Text",
+          "automation_id": ""
+        },
+        {
+          "name": "Open",
+          "control_type": "Button",
+          "automation_id": ""
+        }
+      ]
+    },
+    {
+      "name": "Education",
+      "control_type": "ComboBox",
+      "automation_id": "FF_CB_36",
+      "class_name": "WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1",
+      "handle": 133678,
+      "rect": {
+        "x": 1239,
+        "y": 1831,
+        "width": 360,
+        "height": 34
+      },
+      "value": "",
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "combobox",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "",
+        "control_type": "Pane",
+        "automation_id": "Panel9"
+      },
+      "children": [
+        {
+          "name": "",
+          "control_type": "Text",
+          "automation_id": ""
+        },
+        {
+          "name": "Open",
+          "control_type": "Button",
+          "automation_id": ""
+        }
+      ]
+    },
+    {
+      "name": "ECI Code",
+      "control_type": "Edit",
+      "automation_id": "FF_TB_35",
+      "class_name": "WindowsForms10.EDIT.app.0.141b42a_r7_ad1",
+      "handle": 133674,
+      "rect": {
+        "x": 1239,
+        "y": 1795,
+        "width": 360,
+        "height": 33
+      },
+      "value": "",
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "textbox",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "",
+        "control_type": "Pane",
+        "automation_id": "Panel9"
+      },
+      "children": []
+    },
+    {
+      "name": "Children Girl",
+      "control_type": "ComboBox",
+      "automation_id": "FF_CB_34",
+      "class_name": "WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1",
+      "handle": 133664,
+      "rect": {
+        "x": 1239,
+        "y": 1706,
+        "width": 360,
+        "height": 34
+      },
+      "value": "",
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "combobox",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "",
+        "control_type": "Pane",
+        "automation_id": "Panel8"
+      },
+      "children": [
+        {
+          "name": "",
+          "control_type": "Text",
+          "automation_id": ""
+        },
+        {
+          "name": "Open",
+          "control_type": "Button",
+          "automation_id": ""
+        }
+      ]
+    },
+    {
+      "name": "Father Name",
+      "control_type": "Edit",
+      "automation_id": "FF_TB_28",
+      "class_name": "WindowsForms10.EDIT.app.0.141b42a_r7_ad1",
+      "handle": 1246942,
+      "rect": {
+        "x": 1239,
+        "y": 1481,
+        "width": 360,
+        "height": 33
+      },
+      "value": "",
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "textbox",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "",
+        "control_type": "Pane",
+        "automation_id": "Panel8"
+      },
+      "children": []
+    },
+    {
+      "name": "Mother Name",
+      "control_type": "Edit",
+      "automation_id": "FF_TB_30",
+      "class_name": "WindowsForms10.EDIT.app.0.141b42a_r7_ad1",
+      "handle": 2361524,
+      "rect": {
+        "x": 1239,
+        "y": 1556,
+        "width": 360,
+        "height": 33
+      },
+      "value": "",
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "textbox",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "",
+        "control_type": "Pane",
+        "automation_id": "Panel8"
+      },
+      "children": []
+    },
+    {
+      "name": "Brother",
+      "control_type": "ComboBox",
+      "automation_id": "FF_CB_32",
+      "class_name": "WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1",
+      "handle": 723430,
+      "rect": {
+        "x": 1239,
+        "y": 1631,
+        "width": 360,
+        "height": 34
+      },
+      "value": "",
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "combobox",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "",
+        "control_type": "Pane",
+        "automation_id": "Panel8"
+      },
+      "children": [
+        {
+          "name": "",
+          "control_type": "Text",
+          "automation_id": ""
+        },
+        {
+          "name": "Open",
+          "control_type": "Button",
+          "automation_id": ""
+        }
+      ]
+    },
+    {
+      "name": "Children Boy",
+      "control_type": "ComboBox",
+      "automation_id": "FF_CB_33",
+      "class_name": "WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1",
+      "handle": 854310,
+      "rect": {
+        "x": 1239,
+        "y": 1669,
+        "width": 360,
+        "height": 34
+      },
+      "value": "",
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "combobox",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "",
+        "control_type": "Pane",
+        "automation_id": "Panel8"
+      },
+      "children": [
+        {
+          "name": "",
+          "control_type": "Text",
+          "automation_id": ""
+        },
+        {
+          "name": "Open",
+          "control_type": "Button",
+          "automation_id": ""
+        }
+      ]
+    },
+    {
+      "name": "Sister",
+      "control_type": "ComboBox",
+      "automation_id": "FF_CB_31",
+      "class_name": "WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1",
+      "handle": 1771976,
+      "rect": {
+        "x": 1239,
+        "y": 1594,
+        "width": 360,
+        "height": 34
+      },
+      "value": "",
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "combobox",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "",
+        "control_type": "Pane",
+        "automation_id": "Panel8"
+      },
+      "children": [
+        {
+          "name": "",
+          "control_type": "Text",
+          "automation_id": ""
+        },
+        {
+          "name": "Open",
+          "control_type": "Button",
+          "automation_id": ""
+        }
+      ]
+    },
+    {
+      "name": "Mother Status",
+      "control_type": "ComboBox",
+      "automation_id": "FF_CB_29",
+      "class_name": "WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1",
+      "handle": 2425688,
+      "rect": {
+        "x": 1239,
+        "y": 1519,
+        "width": 360,
+        "height": 34
+      },
+      "value": "",
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "combobox",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "",
+        "control_type": "Pane",
+        "automation_id": "Panel8"
+      },
+      "children": [
+        {
+          "name": "",
+          "control_type": "Text",
+          "automation_id": ""
+        },
+        {
+          "name": "Open",
+          "control_type": "Button",
+          "automation_id": ""
+        }
+      ]
+    },
+    {
+      "name": "Father Status",
+      "control_type": "ComboBox",
+      "automation_id": "FF_CB_27",
+      "class_name": "WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1",
+      "handle": 1116624,
+      "rect": {
+        "x": 1239,
+        "y": 1444,
+        "width": 360,
+        "height": 34
+      },
+      "value": "",
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "combobox",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "",
+        "control_type": "Pane",
+        "automation_id": "Panel8"
+      },
+      "children": [
+        {
+          "name": "Children Girl",
+          "control_type": "Text",
+          "automation_id": ""
+        },
+        {
+          "name": "Open",
+          "control_type": "Button",
+          "automation_id": ""
+        }
+      ]
+    },
+    {
+      "name": "FAI Code",
+      "control_type": "Edit",
+      "automation_id": "FF_TB_26",
+      "class_name": "WindowsForms10.EDIT.app.0.141b42a_r7_ad1",
+      "handle": 133548,
+      "rect": {
+        "x": 1239,
+        "y": 1408,
+        "width": 360,
+        "height": 33
+      },
+      "value": "",
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "textbox",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "",
+        "control_type": "Pane",
+        "automation_id": "Panel8"
+      },
+      "children": []
+    },
+    {
+      "name": "Weight",
+      "control_type": "ComboBox",
+      "automation_id": "FF_CB_25",
+      "class_name": "WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1",
+      "handle": 526562,
+      "rect": {
+        "x": 1239,
+        "y": 1320,
+        "width": 360,
+        "height": 34
+      },
+      "value": "",
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "combobox",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "Mother Tongue",
+        "control_type": "Pane",
+        "automation_id": "Panel7"
+      },
+      "children": [
+        {
+          "name": "Health Info",
+          "control_type": "Text",
+          "automation_id": ""
+        },
+        {
+          "name": "Open",
+          "control_type": "Button",
+          "automation_id": ""
+        }
+      ]
+    },
+    {
+      "name": "Height",
+      "control_type": "ComboBox",
+      "automation_id": "FF_CB_24",
+      "class_name": "WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1",
+      "handle": 854514,
+      "rect": {
+        "x": 1239,
+        "y": 1283,
+        "width": 360,
+        "height": 34
+      },
+      "value": "",
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "combobox",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "Mother Tongue",
+        "control_type": "Pane",
+        "automation_id": "Panel7"
+      },
+      "children": [
+        {
+          "name": "Any Disability",
+          "control_type": "Text",
+          "automation_id": ""
+        },
+        {
+          "name": "Open",
+          "control_type": "Button",
+          "automation_id": ""
+        }
+      ]
+    },
+    {
+      "name": "Diet",
+      "control_type": "ComboBox",
+      "automation_id": "FF_CB_23",
+      "class_name": "WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1",
+      "handle": 133732,
+      "rect": {
+        "x": 1239,
+        "y": 1245,
+        "width": 360,
+        "height": 34
+      },
+      "value": "",
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "combobox",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "Mother Tongue",
+        "control_type": "Pane",
+        "automation_id": "Panel7"
+      },
+      "children": [
+        {
+          "name": "Diet",
+          "control_type": "Text",
+          "automation_id": ""
+        },
+        {
+          "name": "Open",
+          "control_type": "Button",
+          "automation_id": ""
+        }
+      ]
+    },
+    {
+      "name": "Any Disability",
+      "control_type": "ComboBox",
+      "automation_id": "FF_CB_22",
+      "class_name": "WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1",
+      "handle": 68206,
+      "rect": {
+        "x": 1239,
+        "y": 1208,
+        "width": 360,
+        "height": 34
+      },
+      "value": "",
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "combobox",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "Mother Tongue",
+        "control_type": "Pane",
+        "automation_id": "Panel7"
+      },
+      "children": [
+        {
+          "name": "Height",
+          "control_type": "Text",
+          "automation_id": ""
+        },
+        {
+          "name": "Open",
+          "control_type": "Button",
+          "automation_id": ""
+        }
+      ]
+    },
+    {
+      "name": "Health Info",
+      "control_type": "ComboBox",
+      "automation_id": "FF_CB_21",
+      "class_name": "WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1",
+      "handle": 68210,
+      "rect": {
+        "x": 1239,
+        "y": 1170,
+        "width": 360,
+        "height": 34
+      },
+      "value": "",
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "combobox",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "Mother Tongue",
+        "control_type": "Pane",
+        "automation_id": "Panel7"
+      },
+      "children": [
+        {
+          "name": "Weight",
+          "control_type": "Text",
+          "automation_id": ""
+        },
+        {
+          "name": "Open",
+          "control_type": "Button",
+          "automation_id": ""
+        }
+      ]
+    },
+    {
+      "name": "PHI Code",
+      "control_type": "Edit",
+      "automation_id": "FF_TB_20",
+      "class_name": "WindowsForms10.EDIT.app.0.141b42a_r7_ad1",
+      "handle": 68214,
+      "rect": {
+        "x": 1239,
+        "y": 1134,
+        "width": 360,
+        "height": 33
+      },
+      "value": "",
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "textbox",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "Mother Tongue",
+        "control_type": "Pane",
+        "automation_id": "Panel7"
+      },
+      "children": []
+    },
+    {
+      "name": "Rashi",
+      "control_type": "ComboBox",
+      "automation_id": "FF_CB_18",
+      "class_name": "WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1",
+      "handle": 68232,
+      "rect": {
+        "x": 1239,
+        "y": 1010,
+        "width": 360,
+        "height": 34
+      },
+      "value": "",
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "combobox",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "MBI Code",
+        "control_type": "Pane",
+        "automation_id": "Panel6"
+      },
+      "children": [
+        {
+          "name": "",
+          "control_type": "Text",
+          "automation_id": ""
+        },
+        {
+          "name": "Open",
+          "control_type": "Button",
+          "automation_id": ""
+        }
+      ]
+    },
+    {
+      "name": "Pada",
+      "control_type": "ComboBox",
+      "automation_id": "FF_CB_19",
+      "class_name": "WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1",
+      "handle": 68236,
+      "rect": {
+        "x": 1239,
+        "y": 1048,
+        "width": 360,
+        "height": 34
+      },
+      "value": "",
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "combobox",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "MBI Code",
+        "control_type": "Pane",
+        "automation_id": "Panel6"
+      },
+      "children": [
+        {
+          "name": "Pada",
+          "control_type": "Text",
+          "automation_id": ""
+        },
+        {
+          "name": "Open",
+          "control_type": "Button",
+          "automation_id": ""
+        }
+      ]
+    },
+    {
+      "name": "Nakshatra",
+      "control_type": "ComboBox",
+      "automation_id": "FF_CB_17",
+      "class_name": "WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1",
+      "handle": 68240,
+      "rect": {
+        "x": 1239,
+        "y": 973,
+        "width": 360,
+        "height": 34
+      },
+      "value": "",
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "combobox",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "MBI Code",
+        "control_type": "Pane",
+        "automation_id": "Panel6"
+      },
+      "children": [
+        {
+          "name": "",
+          "control_type": "Text",
+          "automation_id": ""
+        },
+        {
+          "name": "Open",
+          "control_type": "Button",
+          "automation_id": ""
+        }
+      ]
+    },
+    {
+      "name": "Sub Cast",
+      "control_type": "ComboBox",
+      "automation_id": "FF_CB_16",
+      "class_name": "WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1",
+      "handle": 68244,
+      "rect": {
+        "x": 1239,
+        "y": 935,
+        "width": 360,
+        "height": 34
+      },
+      "value": "",
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "combobox",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "MBI Code",
+        "control_type": "Pane",
+        "automation_id": "Panel6"
+      },
+      "children": [
+        {
+          "name": "",
+          "control_type": "Text",
+          "automation_id": ""
+        },
+        {
+          "name": "Open",
+          "control_type": "Button",
+          "automation_id": ""
+        }
+      ]
+    },
+    {
+      "name": "Cast",
+      "control_type": "ComboBox",
+      "automation_id": "FF_CB_15",
+      "class_name": "WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1",
+      "handle": 68248,
+      "rect": {
+        "x": 1239,
+        "y": 898,
+        "width": 360,
+        "height": 34
+      },
+      "value": "",
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "combobox",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "MBI Code",
+        "control_type": "Pane",
+        "automation_id": "Panel6"
+      },
+      "children": [
+        {
+          "name": "RAI Code",
+          "control_type": "Text",
+          "automation_id": ""
+        },
+        {
+          "name": "Open",
+          "control_type": "Button",
+          "automation_id": ""
+        }
+      ]
+    },
+    {
+      "name": "Religion",
+      "control_type": "ComboBox",
+      "automation_id": "FF_CB_14",
+      "class_name": "WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1",
+      "handle": 68252,
+      "rect": {
+        "x": 1239,
+        "y": 860,
+        "width": 360,
+        "height": 34
+      },
+      "value": "",
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "combobox",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "MBI Code",
+        "control_type": "Pane",
+        "automation_id": "Panel6"
+      },
+      "children": [
+        {
+          "name": "",
+          "control_type": "Text",
+          "automation_id": ""
+        },
+        {
+          "name": "Open",
+          "control_type": "Button",
+          "automation_id": ""
+        }
+      ]
+    },
+    {
+      "name": "Mother Tongue",
+      "control_type": "ComboBox",
+      "automation_id": "FF_CB_13",
+      "class_name": "WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1",
+      "handle": 68256,
+      "rect": {
+        "x": 1239,
+        "y": 823,
+        "width": 360,
+        "height": 34
+      },
+      "value": "",
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "combobox",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "MBI Code",
+        "control_type": "Pane",
+        "automation_id": "Panel6"
+      },
+      "children": [
+        {
+          "name": "",
+          "control_type": "Text",
+          "automation_id": ""
+        },
+        {
+          "name": "Open",
+          "control_type": "Button",
+          "automation_id": ""
+        }
+      ]
+    },
+    {
+      "name": "RAI Code",
+      "control_type": "Edit",
+      "automation_id": "FF_TB_12",
+      "class_name": "WindowsForms10.EDIT.app.0.141b42a_r7_ad1",
+      "handle": 68260,
+      "rect": {
+        "x": 1239,
+        "y": 786,
+        "width": 360,
+        "height": 33
+      },
+      "value": "",
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "textbox",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "MBI Code",
+        "control_type": "Pane",
+        "automation_id": "Panel6"
+      },
+      "children": []
+    },
+    {
+      "name": "Date Of Birth",
+      "control_type": "ComboBox",
+      "automation_id": "FF_CD_05",
+      "class_name": "WindowsForms10.SysDateTimePick32.app.0.141b42a_r7_ad1",
+      "handle": 68282,
+      "rect": {
+        "x": 1239,
+        "y": 478,
+        "width": 360,
+        "height": 33
+      },
+      "value": "03 September 2026",
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "combobox",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "03:56:58",
+        "control_type": "Pane",
+        "automation_id": "Panel5"
+      },
+      "children": []
+    },
+    {
+      "name": "House Type",
+      "control_type": "ComboBox",
+      "automation_id": "FF_CB_11",
+      "class_name": "WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1",
+      "handle": 68284,
+      "rect": {
+        "x": 1239,
+        "y": 699,
+        "width": 360,
+        "height": 34
+      },
+      "value": "",
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "combobox",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "03:56:58",
+        "control_type": "Pane",
+        "automation_id": "Panel5"
+      },
+      "children": [
+        {
+          "name": "",
+          "control_type": "Text",
+          "automation_id": ""
+        },
+        {
+          "name": "Open",
+          "control_type": "Button",
+          "automation_id": ""
+        }
+      ]
+    },
+    {
+      "name": "District",
+      "control_type": "ComboBox",
+      "automation_id": "FF_CB_08",
+      "class_name": "WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1",
+      "handle": 68288,
+      "rect": {
+        "x": 1239,
+        "y": 589,
+        "width": 360,
+        "height": 34
+      },
+      "value": "",
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "combobox",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "03:56:58",
+        "control_type": "Pane",
+        "automation_id": "Panel5"
+      },
+      "children": [
+        {
+          "name": "",
+          "control_type": "Text",
+          "automation_id": ""
+        },
+        {
+          "name": "Open",
+          "control_type": "Button",
+          "automation_id": ""
+        }
+      ]
+    },
+    {
+      "name": "State",
+      "control_type": "ComboBox",
+      "automation_id": "FF_CB_07",
+      "class_name": "WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1",
+      "handle": 68292,
+      "rect": {
+        "x": 1239,
+        "y": 551,
+        "width": 360,
+        "height": 34
+      },
+      "value": "",
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "combobox",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "03:56:58",
+        "control_type": "Pane",
+        "automation_id": "Panel5"
+      },
+      "children": [
+        {
+          "name": "",
+          "control_type": "Text",
+          "automation_id": ""
+        },
+        {
+          "name": "Open",
+          "control_type": "Button",
+          "automation_id": ""
+        }
+      ]
+    },
+    {
+      "name": "Marital Status",
+      "control_type": "ComboBox",
+      "automation_id": "FF_CB_06",
+      "class_name": "WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1",
+      "handle": 68296,
+      "rect": {
+        "x": 1239,
+        "y": 514,
+        "width": 360,
+        "height": 34
+      },
+      "value": "",
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "combobox",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "03:56:58",
+        "control_type": "Pane",
+        "automation_id": "Panel5"
+      },
+      "children": [
+        {
+          "name": "",
+          "control_type": "Text",
+          "automation_id": ""
+        },
+        {
+          "name": "Open",
+          "control_type": "Button",
+          "automation_id": ""
+        }
+      ]
+    },
+    {
+      "name": "Gender",
+      "control_type": "ComboBox",
+      "automation_id": "FF_CB_04",
+      "class_name": "WindowsForms10.COMBOBOX.app.0.141b42a_r7_ad1",
+      "handle": 68300,
+      "rect": {
+        "x": 1239,
+        "y": 440,
+        "width": 360,
+        "height": 34
+      },
+      "value": "",
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "combobox",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "03:56:58",
+        "control_type": "Pane",
+        "automation_id": "Panel5"
+      },
+      "children": [
+        {
+          "name": "Member Basic Information",
+          "control_type": "Text",
+          "automation_id": ""
+        },
+        {
+          "name": "Open",
+          "control_type": "Button",
+          "automation_id": ""
+        }
+      ]
+    },
+    {
+      "name": "MBI Code",
+      "control_type": "Edit",
+      "automation_id": "FF_TB_02",
+      "class_name": "WindowsForms10.EDIT.app.0.141b42a_r7_ad1",
+      "handle": 68304,
+      "rect": {
+        "x": 1239,
+        "y": 368,
+        "width": 360,
+        "height": 33
+      },
+      "value": "",
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "textbox",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "03:56:58",
+        "control_type": "Pane",
+        "automation_id": "Panel5"
+      },
+      "children": []
+    },
+    {
+      "name": "Full Name",
+      "control_type": "Edit",
+      "automation_id": "FF_TB_03",
+      "class_name": "WindowsForms10.EDIT.app.0.141b42a_r7_ad1",
+      "handle": 68306,
+      "rect": {
+        "x": 1239,
+        "y": 404,
+        "width": 360,
+        "height": 33
+      },
+      "value": "",
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "textbox",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "03:56:58",
+        "control_type": "Pane",
+        "automation_id": "Panel5"
+      },
+      "children": []
+    },
+    {
+      "name": "Taluk",
+      "control_type": "Edit",
+      "automation_id": "FF_TB_09",
+      "class_name": "WindowsForms10.EDIT.app.0.141b42a_r7_ad1",
+      "handle": 68308,
+      "rect": {
+        "x": 1239,
+        "y": 626,
+        "width": 360,
+        "height": 33
+      },
+      "value": "",
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "textbox",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "03:56:58",
+        "control_type": "Pane",
+        "automation_id": "Panel5"
+      },
+      "children": []
+    },
+    {
+      "name": "Pincode",
+      "control_type": "Edit",
+      "automation_id": "FF_TB_10",
+      "class_name": "WindowsForms10.EDIT.app.0.141b42a_r7_ad1",
+      "handle": 68310,
+      "rect": {
+        "x": 1239,
+        "y": 663,
+        "width": 360,
+        "height": 33
+      },
+      "value": "",
+      "enabled": true,
+      "visible": true,
+      "password": false,
+      "options": [],
+      "type_override": null,
+      "editable": true,
+      "element_type": "textbox",
+      "framework_id": "WinForm",
+      "is_keyboard_focusable": false,
+      "patterns": [],
+      "parent": {
+        "name": "03:56:58",
+        "control_type": "Pane",
+        "automation_id": "Panel5"
+      },
+      "children": []
+    }
+  ],
+  "upload_button": {
+    "name": "Upload Details",
+    "control_type": "Button",
+    "automation_id": "BU01",
+    "class_name": "WindowsForms10.BUTTON.app.0.141b42a_r7_ad1",
+    "handle": 133688,
+    "rect": {
+      "x": 1083,
+      "y": 1955,
+      "width": 525,
+      "height": 90
+    },
+    "value": null,
+    "enabled": true,
+    "visible": true,
+    "password": false,
+    "options": [],
+    "type_override": null,
+    "editable": false,
+    "element_type": "button",
+    "framework_id": "WinForm",
+    "is_keyboard_focusable": false,
+    "patterns": [],
+    "parent": {
+      "name": "03:57:01",
+      "control_type": "Pane",
+      "automation_id": "Panel4"
+    },
+    "children": []
+  },
+  "scroll_containers": [
+    {
+      "name": "03:56:54",
+      "control_type": "Pane",
+      "automation_id": "Panel4",
+      "class_name": "WindowsForms10.Window.8.app.0.141b42a_r7_ad1",
+      "framework_id": "WinForm",
+      "handle": 133690,
+      "rect": {
+        "x": 1075,
+        "y": 284,
+        "width": 561,
+        "height": 639
+      },
+      "has_scroll_pattern": true,
+      "vertical_scroll_percent": 0.0,
+      "vertical_view_size": 36.15056818181818,
+      "runtime_id": [],
+      "parent": {
+        "name": "",
+        "control_type": "Pane",
+        "automation_id": "P_02"
+      },
+      "dom_ref": "",
+      "at_max": false,
+      "more_content": true
+    },
+    {
+      "name": "MPF (Form Filling Page)",
+      "control_type": "Pane",
+      "automation_id": "Panel1",
+      "class_name": "WindowsForms10.Window.8.app.0.141b42a_r7_ad1",
+      "framework_id": "WinForm",
+      "handle": 68362,
+      "rect": {
+        "x": 644,
+        "y": 283,
+        "width": 429,
+        "height": 413
+      },
+      "has_scroll_pattern": true,
+      "vertical_scroll_percent": 0.0,
+      "vertical_view_size": 46.99140401146132,
+      "runtime_id": [],
+      "parent": {
+        "name": "",
+        "control_type": "Pane",
+        "automation_id": "P_02"
+      },
+      "dom_ref": "",
+      "at_max": false,
+      "more_content": true
+    },
+    {
+      "name": "",
+      "control_type": "Pane",
+      "automation_id": "HP_P_03",
+      "class_name": "WindowsForms10.Window.8.app.0.141b42a_r7_ad1",
+      "framework_id": "WinForm",
+      "handle": 1313118,
+      "rect": {
+        "x": 360,
+        "y": 88,
+        "width": 1560,
+        "height": 993
+      },
+      "has_scroll_pattern": false,
+      "vertical_scroll_percent": null,
+      "vertical_view_size": null,
+      "runtime_id": [],
+      "parent": null,
+      "dom_ref": "",
+      "at_max": false,
+      "more_content": true
+    },
+    {
+      "name": "",
+      "control_type": "Pane",
+      "automation_id": "P_01",
+      "class_name": "WindowsForms10.Window.8.app.0.141b42a_r7_ad1",
+      "framework_id": "WinForm",
+      "handle": 264718,
+      "rect": {
+        "x": 634,
+        "y": 234,
+        "width": 1013,
+        "height": 700
+      },
+      "has_scroll_pattern": false,
+      "vertical_scroll_percent": null,
+      "vertical_view_size": null,
+      "runtime_id": [],
+      "parent": null,
+      "dom_ref": "",
+      "at_max": false,
+      "more_content": true
+    },
+    {
+      "name": "",
+      "control_type": "Pane",
+      "automation_id": "P_02",
+      "class_name": "WindowsForms10.Window.8.app.0.141b42a_r7_ad1",
+      "framework_id": "WinForm",
+      "handle": 199180,
+      "rect": {
+        "x": 640,
+        "y": 240,
+        "width": 1000,
+        "height": 688
+      },
+      "has_scroll_pattern": false,
+      "vertical_scroll_percent": null,
+      "vertical_view_size": null,
+      "runtime_id": [],
+      "parent": null,
+      "dom_ref": "",
+      "at_max": false,
+      "more_content": true
+    }
+  ],
+  "mappings": [],
+  "source_field_count": 27,
+  "target_field_count": 37,
+  "scroll_container_count": 5
+}

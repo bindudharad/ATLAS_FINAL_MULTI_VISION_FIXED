@@ -69,6 +69,13 @@ class HumanKeyboard:
     def tab(self, times: int = 1) -> None:
         self.press("tab", times)
 
+    def shift_tab(self, times: int = 1) -> None:
+        """Navigate backwards with SHIFT+TAB."""
+        for _ in range(times):
+            self._driver.hotkey("shift", "tab")
+            import time, random
+            time.sleep(random.uniform(0.03, 0.09))
+
     def enter(self) -> None:
         self.press("enter")
 
